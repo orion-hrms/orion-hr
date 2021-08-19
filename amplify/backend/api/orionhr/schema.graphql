@@ -1,0 +1,8 @@
+type Employee @model {
+  id: ID!
+  name: String!
+  email: String!
+  position: String!
+  response: String
+  analysis: String
+}

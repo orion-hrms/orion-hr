@@ -1,0 +1,13 @@
+{
+    "resourceName": "interpretText4460df1b",
+    "interpretPolicyName": "interpretPolicy4460df1b",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "interpretType": "interpretText",
+    "type": "SENTIMENT",
+    "access": "auth"
+}
