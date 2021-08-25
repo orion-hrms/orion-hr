@@ -8,12 +8,14 @@ import {
   Button,
   Jumbotron,
   Container,
+  Card,
+  CardTitle,
+  CardBody,
+  CardText
 } from "reactstrap";
-import { Card, CardText, CardBody, CardTitle } from "reactstrap";
-import "./App.css";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import Amplify, { API, graphqlOperation, Predictions } from "aws-amplify";
-import { createEmployee } from "./graphql/mutations";
+import { createEmployee } from "../graphql/mutations";
 import { AmazonAIPredictionsProvider } from "@aws-amplify/predictions";
 
 import awsconfig from "../aws-exports";
@@ -21,7 +23,7 @@ import awsconfig from "../aws-exports";
 Amplify.configure(awsconfig);
 Amplify.addPluggable(new AmazonAIPredictionsProvider());
 
-function employeeSentimentAnalysis() {
+function EmployeeSentimentAnalysis() {
   const [response, setResponse] = useState("");
   const [analysis, setAnalysis] = useState("");
   const [names, setName] = useState("");
@@ -109,6 +111,7 @@ function employeeSentimentAnalysis() {
                       }}
                     />
                   </FormGroup>
+                  <br/>
                   <FormGroup>
                     <Label for="exampleEmail">Email</Label>
                     <Input
@@ -122,6 +125,7 @@ function employeeSentimentAnalysis() {
                       }}
                     />
                   </FormGroup>
+                  <br/>
                   <FormGroup>
                     <Label for="examplePosition">Position</Label>
                     <Input
@@ -180,6 +184,7 @@ function employeeSentimentAnalysis() {
                       />
                     </div>
                   </FormGroup>
+                  <br/>
                   <FormGroup>
                     <Label for="exampleCheckbox">
                       My overall workload is managable.
@@ -217,6 +222,7 @@ function employeeSentimentAnalysis() {
                       />
                     </div>
                   </FormGroup>
+                  <br/>
                   <FormGroup>
                     <Label for="exampleCheckbox">
                       This job allows me to use my skills and abilities
@@ -255,6 +261,7 @@ function employeeSentimentAnalysis() {
                       />
                     </div>
                   </FormGroup>
+                  <br/>
                   <FormGroup>
                     <Label for="exampleCheckbox">
                       This job provides me with opportunities for promotions or
@@ -293,6 +300,7 @@ function employeeSentimentAnalysis() {
                       />
                     </div>
                   </FormGroup>
+                  <br/>
                   <FormGroup>
                     <Label for="exampleCheckbox">
                       This job allows me to learn new skills and develop
@@ -331,6 +339,7 @@ function employeeSentimentAnalysis() {
                       />
                     </div>
                   </FormGroup>
+                  <br/>
                   <FormGroup>
                     <Label for="exampleSuggestions">Suggestions</Label>
                     <Input
@@ -364,4 +373,4 @@ function employeeSentimentAnalysis() {
   );
 }
 
-export default withAuthenticator(employeeSentimentAnalysis);
+export default EmployeeSentimentAnalysis;
