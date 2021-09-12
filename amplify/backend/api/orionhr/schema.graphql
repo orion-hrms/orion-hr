@@ -1,8 +1,27 @@
-type Employee @model {
+type Employee @model @auth(rules: [{ allow: owner }]){
   id: ID!
   name: String!
   email: String!
   position: String!
-  response: String
-  analysis: String
+  survey: [Survey] @connection(name: "Feedback")
+}
+
+type Survey @model @auth(rules: [{ allow: owner }]){
+  id: ID!
+  surveyID: ID!
+  surveyName: String!
+  employee: Employee @connection(name: "Feedback")
+  question: [Question] @connection(name: "Questions")
+}
+
+type Question @model @auth(rules: [{ allow: owner }]){
+  id: ID!
+  questionID: ID!
+  survey: Survey @connection(name: "Questions")
+  question1: String!
+  question2: String!
+  question3: String!
+  question4: String!
+  response: String!
+  analyze: String!
 }
