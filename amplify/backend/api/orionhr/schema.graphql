@@ -1,8 +1,87 @@
-type Employee @model {
+type Survey @model @auth(rules: [{ allow: owner }]) {
   id: ID!
-  name: String!
-  email: String!
-  position: String!
-  response: String
-  analysis: String
+  surveyID: String
+  surveyName: String!
+  userId: String
+}
+
+type Question @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  questionID: ID!
+  surveyID: String
+  question1: String!
+  question2: String!
+  question3: String!
+  question4: String!
+  response: String!
+  analyze: String!
+}
+
+type S3Object @model {
+  bucket: String!
+  region: String!
+  key: String!
+}
+
+type user
+  @model
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Admin"]
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: owner
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+    ]
+  ) {
+  id: ID!
+  UserId: String
+  UserName: String
+  UserEmail: String
+  UserRole: String
+  UserStatus: String
+}
+
+type employeedetail @model {
+  id: ID!
+  UserId: String
+  tag: String
+  owner: String
+  paygrade: String
+  designation: String
+  department: String
+  joiningDate: String
+}
+
+type Tickets @model {
+  id: ID!
+  createdby: String
+  priority: Int
+  subject: String
+  category: String
+  feedback: String
+  body: String
+  createdon: String
+}
+
+type Reminders @model {
+  id: ID!
+  createdby: String
+  priority: Int
+  subject: String
+  category: String
+  createdon: String
+}
+type Meetings @model {
+  id: ID!
+  createdon: String
+  subject: String
+  Category: String
+  ScheduledOn: String
 }
