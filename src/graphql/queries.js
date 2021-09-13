@@ -1,87 +1,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getEmployee = /* GraphQL */ `
-  query GetEmployee($id: ID!) {
-    getEmployee(id: $id) {
-      id
-      name
-      email
-      position
-      survey {
-        items {
-          id
-          surveyID
-          surveyName
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listEmployees = /* GraphQL */ `
-  query ListEmployees(
-    $filter: ModelEmployeeFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEmployees(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        email
-        position
-        survey {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
 export const getSurvey = /* GraphQL */ `
   query GetSurvey($id: ID!) {
     getSurvey(id: $id) {
       id
       surveyID
       surveyName
-      employee {
-        id
-        name
-        email
-        position
-        survey {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      question {
-        items {
-          id
-          questionID
-          question1
-          question2
-          question3
-          question4
-          response
-          analyze
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
+      userId
       createdAt
       updatedAt
       owner
@@ -99,18 +25,7 @@ export const listSurveys = /* GraphQL */ `
         id
         surveyID
         surveyName
-        employee {
-          id
-          name
-          email
-          position
-          createdAt
-          updatedAt
-          owner
-        }
-        question {
-          nextToken
-        }
+        userId
         createdAt
         updatedAt
         owner
@@ -124,26 +39,7 @@ export const getQuestion = /* GraphQL */ `
     getQuestion(id: $id) {
       id
       questionID
-      survey {
-        id
-        surveyID
-        surveyName
-        employee {
-          id
-          name
-          email
-          position
-          createdAt
-          updatedAt
-          owner
-        }
-        question {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      surveyID
       question1
       question2
       question3
@@ -166,14 +62,7 @@ export const listQuestions = /* GraphQL */ `
       items {
         id
         questionID
-        survey {
-          id
-          surveyID
-          surveyName
-          createdAt
-          updatedAt
-          owner
-        }
+        surveyID
         question1
         question2
         question3
@@ -228,7 +117,6 @@ export const getUser = /* GraphQL */ `
       UserEmail
       UserRole
       UserStatus
-      UserPassword
       createdAt
       updatedAt
       owner
@@ -249,7 +137,6 @@ export const listUsers = /* GraphQL */ `
         UserEmail
         UserRole
         UserStatus
-        UserPassword
         createdAt
         updatedAt
         owner
@@ -263,18 +150,6 @@ export const getEmployeedetail = /* GraphQL */ `
     getEmployeedetail(id: $id) {
       id
       UserId
-      UserDetail {
-        id
-        UserId
-        UserName
-        UserEmail
-        UserRole
-        UserStatus
-        UserPassword
-        createdAt
-        updatedAt
-        owner
-      }
       tag
       owner
       paygrade
@@ -296,18 +171,6 @@ export const listEmployeedetails = /* GraphQL */ `
       items {
         id
         UserId
-        UserDetail {
-          id
-          UserId
-          UserName
-          UserEmail
-          UserRole
-          UserStatus
-          UserPassword
-          createdAt
-          updatedAt
-          owner
-        }
         tag
         owner
         paygrade

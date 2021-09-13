@@ -1,112 +1,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateEmployee = /* GraphQL */ `
-  subscription OnCreateEmployee($owner: String!) {
-    onCreateEmployee(owner: $owner) {
-      id
-      name
-      email
-      position
-      survey {
-        items {
-          id
-          surveyID
-          surveyName
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdateEmployee = /* GraphQL */ `
-  subscription OnUpdateEmployee($owner: String!) {
-    onUpdateEmployee(owner: $owner) {
-      id
-      name
-      email
-      position
-      survey {
-        items {
-          id
-          surveyID
-          surveyName
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeleteEmployee = /* GraphQL */ `
-  subscription OnDeleteEmployee($owner: String!) {
-    onDeleteEmployee(owner: $owner) {
-      id
-      name
-      email
-      position
-      survey {
-        items {
-          id
-          surveyID
-          surveyName
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
 export const onCreateSurvey = /* GraphQL */ `
   subscription OnCreateSurvey($owner: String!) {
     onCreateSurvey(owner: $owner) {
       id
       surveyID
       surveyName
-      employee {
-        id
-        name
-        email
-        position
-        survey {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      question {
-        items {
-          id
-          questionID
-          question1
-          question2
-          question3
-          question4
-          response
-          analyze
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
+      userId
       createdAt
       updatedAt
       owner
@@ -119,34 +20,7 @@ export const onUpdateSurvey = /* GraphQL */ `
       id
       surveyID
       surveyName
-      employee {
-        id
-        name
-        email
-        position
-        survey {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      question {
-        items {
-          id
-          questionID
-          question1
-          question2
-          question3
-          question4
-          response
-          analyze
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
+      userId
       createdAt
       updatedAt
       owner
@@ -159,34 +33,7 @@ export const onDeleteSurvey = /* GraphQL */ `
       id
       surveyID
       surveyName
-      employee {
-        id
-        name
-        email
-        position
-        survey {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      question {
-        items {
-          id
-          questionID
-          question1
-          question2
-          question3
-          question4
-          response
-          analyze
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
+      userId
       createdAt
       updatedAt
       owner
@@ -198,26 +45,7 @@ export const onCreateQuestion = /* GraphQL */ `
     onCreateQuestion(owner: $owner) {
       id
       questionID
-      survey {
-        id
-        surveyID
-        surveyName
-        employee {
-          id
-          name
-          email
-          position
-          createdAt
-          updatedAt
-          owner
-        }
-        question {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      surveyID
       question1
       question2
       question3
@@ -235,26 +63,7 @@ export const onUpdateQuestion = /* GraphQL */ `
     onUpdateQuestion(owner: $owner) {
       id
       questionID
-      survey {
-        id
-        surveyID
-        surveyName
-        employee {
-          id
-          name
-          email
-          position
-          createdAt
-          updatedAt
-          owner
-        }
-        question {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      surveyID
       question1
       question2
       question3
@@ -272,26 +81,7 @@ export const onDeleteQuestion = /* GraphQL */ `
     onDeleteQuestion(owner: $owner) {
       id
       questionID
-      survey {
-        id
-        surveyID
-        surveyName
-        employee {
-          id
-          name
-          email
-          position
-          createdAt
-          updatedAt
-          owner
-        }
-        question {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      surveyID
       question1
       question2
       question3
@@ -349,7 +139,6 @@ export const onCreateUser = /* GraphQL */ `
       UserEmail
       UserRole
       UserStatus
-      UserPassword
       createdAt
       updatedAt
       owner
@@ -365,7 +154,6 @@ export const onUpdateUser = /* GraphQL */ `
       UserEmail
       UserRole
       UserStatus
-      UserPassword
       createdAt
       updatedAt
       owner
@@ -381,7 +169,6 @@ export const onDeleteUser = /* GraphQL */ `
       UserEmail
       UserRole
       UserStatus
-      UserPassword
       createdAt
       updatedAt
       owner
@@ -393,18 +180,6 @@ export const onCreateEmployeedetail = /* GraphQL */ `
     onCreateEmployeedetail {
       id
       UserId
-      UserDetail {
-        id
-        UserId
-        UserName
-        UserEmail
-        UserRole
-        UserStatus
-        UserPassword
-        createdAt
-        updatedAt
-        owner
-      }
       tag
       owner
       paygrade
@@ -421,18 +196,6 @@ export const onUpdateEmployeedetail = /* GraphQL */ `
     onUpdateEmployeedetail {
       id
       UserId
-      UserDetail {
-        id
-        UserId
-        UserName
-        UserEmail
-        UserRole
-        UserStatus
-        UserPassword
-        createdAt
-        updatedAt
-        owner
-      }
       tag
       owner
       paygrade
@@ -449,18 +212,6 @@ export const onDeleteEmployeedetail = /* GraphQL */ `
     onDeleteEmployeedetail {
       id
       UserId
-      UserDetail {
-        id
-        UserId
-        UserName
-        UserEmail
-        UserRole
-        UserStatus
-        UserPassword
-        createdAt
-        updatedAt
-        owner
-      }
       tag
       owner
       paygrade
