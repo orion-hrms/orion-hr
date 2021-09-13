@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React, { lazy } from "react";
 
 import {
   CAvatar,
@@ -17,18 +17,22 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
-} from '@coreui/react'
-import { CChartLine } from '@coreui/react-chartjs'
-import { getStyle, hexToRgba } from '@coreui/utils'
-import CIcon from '@coreui/icons-react'
+} from "@coreui/react";
+import { CChartLine } from "@coreui/react-chartjs";
+import { getStyle, hexToRgba } from "@coreui/utils";
+import CIcon from "@coreui/icons-react";
 
-const WidgetsDropdown = lazy(() => import('../components/widgets/WidgetsDropdown.js'))
-const WidgetsBrand = lazy(() => import('../components/widgets/WidgetsBrand.js'))
+const WidgetsDropdown = lazy(() =>
+  import("../components/widgets/WidgetsDropdown.js")
+);
+const WidgetsBrand = lazy(() =>
+  import("../components/widgets/WidgetsBrand.js")
+);
 
 const Dashboard = () => {
   const random = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
 
   return (
     <>
@@ -44,7 +48,7 @@ const Dashboard = () => {
             </CCol>
             <CCol sm="7" className="d-none d-md-block">
               <CButton color="primary" className="float-end">
-                <CIcon name="cil-cloud-download" />
+                <CIcon icon="cil-cloud-download" />
               </CButton>
               <CButtonGroup className="float-end me-3">
                 {['Day', 'Month', 'Year'].map((value) => (
@@ -317,7 +321,7 @@ const Dashboard = () => {
                   </div>
                   <div className="progress-group">
                     <div className="progress-group-header">
-                      <CIcon name="cib-facebook" className="icon icon-lg me-2" />
+                      <CIcon icon="cib-facebook" className="icon icon-lg me-2" />
                       <span>Facebook</span>
                       <span className="ms-auto font-semibold">
                         51,223 <span className="text-medium-emphasis small">(15%)</span>
@@ -329,7 +333,7 @@ const Dashboard = () => {
                   </div>
                   <div className="progress-group">
                     <div className="progress-group-header">
-                      <CIcon name="cib-twitter" className="icon icon-lg me-2" />
+                      <CIcon icon="cib-twitter" className="icon icon-lg me-2" />
                       <span>Twitter</span>
                       <span className="ms-auto font-semibold">
                         37,564 <span className="text-medium-emphasis small">(11%)</span>
@@ -341,7 +345,7 @@ const Dashboard = () => {
                   </div>
                   <div className="progress-group">
                     <div className="progress-group-header">
-                      <CIcon name="cib-linkedin" className="icon icon-lg me-2" />
+                      <CIcon icon="cib-linkedin" className="icon icon-lg me-2" />
                       <span>LinkedIn</span>
                       <span className="ms-auto font-semibold">
                         27,319 <span className="text-medium-emphasis small">(8%)</span>
@@ -360,7 +364,7 @@ const Dashboard = () => {
         </CCol>
       </CRow> */}
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

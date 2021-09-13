@@ -8,7 +8,7 @@ const _nav = [
     as: NavLink,
     anchor: "Dashboard",
     to: "/dashboard",
-    icon: <CIcon name="cil-speedometer" customClassName="nav-icon" />,
+    icon: <CIcon icon="cil-speedometer" customClassName="nav-icon" />,
     badge: {
       color: "info",
       text: "NEW",
@@ -19,7 +19,7 @@ const _nav = [
     as: NavLink,
     anchor: "Employees",
     to: "/employees",
-    icon: <CIcon name="cil-people" customClassName="nav-icon" />,
+    icon: <CIcon icon="cil-people" customClassName="nav-icon" />,
     badge: {
       color: "info",
       text: "NEW",
@@ -31,7 +31,7 @@ const _nav = [
     as: NavLink,
     anchor: "Meetings",
     to: "/meetings",
-    icon: <CIcon name="cil-list" customClassName="nav-icon" />,
+    icon: <CIcon icon="cil-list" customClassName="nav-icon" />,
     badge: {
       color: "info",
       text: "NEW",
@@ -43,7 +43,7 @@ const _nav = [
     as: NavLink,
     anchor: "Tickets",
     to: "/tickets",
-    icon: <CIcon name="cil-warning" customClassName="nav-icon" />,
+    icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
     badge: {
       color: "info",
       text: "NEW",
@@ -59,7 +59,7 @@ const _nav = [
     as: NavLink,
     anchor: "Meetings",
     to: "/theme/colors",
-    icon: <CIcon name="cil-drop" customClassName="nav-icon" />,
+    icon: <CIcon icon="cil-drop" customClassName="nav-icon" />,
   },
 
   {
@@ -67,7 +67,7 @@ const _nav = [
     as: NavLink,
     anchor: "Mails",
     to: "/theme/typography",
-    icon: <CIcon name="cil-pencil" customClassName="nav-icon" />,
+    icon: <CIcon icon="cil-pencil" customClassName="nav-icon" />,
   },
 ];
 export default _nav;

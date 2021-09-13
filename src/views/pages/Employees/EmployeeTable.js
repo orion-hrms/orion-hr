@@ -52,7 +52,7 @@ export default function EmployeeTable() {
 //           <CTableHead color="light">
 //             <CTableRow>
 //               <CTableHeaderCell className="text-center">
-//                 <CIcon name="cil-people" />
+//                 <CIcon icon="cil-people" />
 //               </CTableHeaderCell>
 //               <CTableHeaderCell>EmployeeName</CTableHeaderCell>
 //               <CTableHeaderCell>EmpId</CTableHeaderCell>

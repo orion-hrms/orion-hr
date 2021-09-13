@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   CButton,
   CCard,
@@ -10,8 +10,8 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
 
 const Register = () => {
   return (
@@ -26,9 +26,12 @@ const Register = () => {
                   <p className="text-medium-emphasis">Create your account</p>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
-                      <CIcon name="cil-user" />
+                      <CIcon icon="cil-user" />
                     </CInputGroupText>
-                    <CFormControl placeholder="Username" autoComplete="username" />
+                    <CFormControl
+                      placeholder="Username"
+                      autoComplete="username"
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
@@ -36,7 +39,7 @@ const Register = () => {
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
-                      <CIcon name="cil-lock-locked" />
+                      <CIcon icon="cil-lock-locked" />
                     </CInputGroupText>
                     <CFormControl
                       type="password"
@@ -46,7 +49,7 @@ const Register = () => {
                   </CInputGroup>
                   <CInputGroup className="mb-4">
                     <CInputGroupText>
-                      <CIcon name="cil-lock-locked" />
+                      <CIcon icon="cil-lock-locked" />
                     </CInputGroupText>
                     <CFormControl
                       type="password"
@@ -64,7 +67,7 @@ const Register = () => {
         </CRow>
       </CContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

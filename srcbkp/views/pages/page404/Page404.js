@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   CButton,
   CCol,
@@ -7,8 +7,8 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
 
 const Page404 = () => {
   return (
@@ -25,16 +25,20 @@ const Page404 = () => {
             </div>
             <CInputGroup className="input-prepend">
               <CInputGroupText>
-                <CIcon name="cil-magnifying-glass" />
+                <CIcon icon="cil-magnifying-glass" />
               </CInputGroupText>
-              <CFormControl size="16" type="text" placeholder="What are you looking for?" />
+              <CFormControl
+                size="16"
+                type="text"
+                placeholder="What are you looking for?"
+              />
               <CButton color="info">Search</CButton>
             </CInputGroup>
           </CCol>
         </CRow>
       </CContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Page404
+export default Page404;

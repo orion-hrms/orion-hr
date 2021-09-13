@@ -1,65 +1,65 @@
-import React from 'react'
-import CIcon from '@coreui/icons-react'
-import { NavLink } from 'react-router-dom'
+import React from "react";
+import CIcon from "@coreui/icons-react";
+import { NavLink } from "react-router-dom";
 
 const _nav = [
   {
-    _component: 'CNavItem',
+    _component: "CNavItem",
     as: NavLink,
-    anchor: 'Dashboard',
-    to: '/dashboard',
-    icon: <CIcon name="cil-speedometer" customClassName="nav-icon" />,
+    anchor: "Dashboard",
+    to: "/dashboard",
+    icon: <CIcon icon="cil-speedometer" customClassName="nav-icon" />,
     badge: {
-      color: 'info',
-      text: 'NEW',
+      color: "info",
+      text: "NEW",
     },
   },
   {
-    _component: 'CNavItem',
+    _component: "CNavItem",
     as: NavLink,
-    anchor: 'Employees',
-    to: '/employees',
-    icon: <CIcon name="cil-people" customClassName="nav-icon" />,
+    anchor: "Employees",
+    to: "/employees",
+    icon: <CIcon icon="cil-people" customClassName="nav-icon" />,
     badge: {
-      color: 'info',
-      text: 'NEW',
-    },
-  },
-
-  {
-    _component: 'CNavItem',
-    as: NavLink,
-    anchor: 'Meetings',
-    to: '/meetings',
-    icon: <CIcon name="cil-list" customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
+      color: "info",
+      text: "NEW",
     },
   },
 
   {
-    _component: 'CNavItem',
+    _component: "CNavItem",
     as: NavLink,
-    anchor: 'Tickets',
-    to: '/tickets',
-    icon: <CIcon name="cil-warning" customClassName="nav-icon" />,
+    anchor: "Meetings",
+    to: "/meetings",
+    icon: <CIcon icon="cil-list" customClassName="nav-icon" />,
     badge: {
-      color: 'info',
-      text: 'NEW',
+      color: "info",
+      text: "NEW",
     },
   },
 
   {
-    _component: 'CNavTitle',
-    anchor: 'Theme',
+    _component: "CNavItem",
+    as: NavLink,
+    anchor: "Tickets",
+    to: "/tickets",
+    icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
+    badge: {
+      color: "info",
+      text: "NEW",
+    },
+  },
+
+  {
+    _component: "CNavTitle",
+    anchor: "Theme",
   },
   {
-    _component: 'CNavItem',
+    _component: "CNavItem",
     as: NavLink,
-    anchor: 'Meetings',
-    to: '/theme/colors',
-    icon: <CIcon name="cil-drop" customClassName="nav-icon" />,
+    anchor: "Meetings",
+    to: "/theme/colors",
+    icon: <CIcon icon="cil-drop" customClassName="nav-icon" />,
   },
 
   // {
@@ -67,14 +67,14 @@ const _nav = [
   //   as: NavLink,
   //   anchor: 'Employees',
   //   to: '/theme/employees',
-  //   icon: <CIcon name="cil-drop" customClassName="nav-icon" />,
+  //   icon: <CIcon icon="cil-drop" customClassName="nav-icon" />,
   // },
   {
-    _component: 'CNavItem',
+    _component: "CNavItem",
     as: NavLink,
-    anchor: 'Mails',
-    to: '/theme/typography',
-    icon: <CIcon name="cil-pencil" customClassName="nav-icon" />,
+    anchor: "Mails",
+    to: "/theme/typography",
+    icon: <CIcon icon="cil-pencil" customClassName="nav-icon" />,
   },
   // {
   //   _component: 'CNavTitle',
@@ -85,7 +85,7 @@ const _nav = [
   //   as: NavLink,
   //   anchor: 'Base',
   //   to: '/to',
-  //   icon: <CIcon name="cil-puzzle" customClassName="nav-icon" />,
+  //   icon: <CIcon icon="cil-puzzle" customClassName="nav-icon" />,
   //   items: [
   //     {
   //       _component: 'CNavItem',
@@ -170,7 +170,7 @@ const _nav = [
   // {
   //   _component: 'CNavGroup',
   //   anchor: 'Buttons',
-  //   icon: <CIcon name="cil-cursor" customClassName="nav-icon" />,
+  //   icon: <CIcon icon="cil-cursor" customClassName="nav-icon" />,
   //   items: [
   //     {
   //       _component: 'CNavItem',
@@ -195,7 +195,7 @@ const _nav = [
   // {
   //   _component: 'CNavGroup',
   //   anchor: 'Forms',
-  //   icon: <CIcon name="cil-notes" customClassName="nav-icon" />,
+  //   icon: <CIcon icon="cil-notes" customClassName="nav-icon" />,
   //   items: [
   //     {
   //       _component: 'CNavItem',
@@ -252,12 +252,12 @@ const _nav = [
   //   as: NavLink,
   //   anchor: 'Charts',
   //   to: '/charts',
-  //   icon: <CIcon name="cil-chart-pie" customClassName="nav-icon" />,
+  //   icon: <CIcon icon="cil-chart-pie" customClassName="nav-icon" />,
   // },
   // {
   //   _component: 'CNavGroup',
   //   anchor: 'Icons',
-  //   icon: <CIcon name="cil-star" customClassName="nav-icon" />,
+  //   icon: <CIcon icon="cil-star" customClassName="nav-icon" />,
   //   items: [
   //     {
   //       _component: 'CNavItem',
@@ -286,7 +286,7 @@ const _nav = [
   // {
   //   _component: 'CNavGroup',
   //   anchor: 'Notifications',
-  //   icon: <CIcon name="cil-bell" customClassName="nav-icon" />,
+  //   icon: <CIcon icon="cil-bell" customClassName="nav-icon" />,
   //   items: [
   //     {
   //       _component: 'CNavItem',
@@ -319,7 +319,7 @@ const _nav = [
   //   as: NavLink,
   //   anchor: 'Widgets',
   //   to: '/widgets',
-  //   icon: <CIcon name="cil-calculator" customClassName="nav-icon" />,
+  //   icon: <CIcon icon="cil-calculator" customClassName="nav-icon" />,
   //   badge: {
   //     color: 'info',
   //     text: 'NEW',
@@ -332,7 +332,7 @@ const _nav = [
   // {
   //   _component: 'CNavGroup',
   //   anchor: 'Pages',
-  //   icon: <CIcon name="cil-star" customClassName="nav-icon" />,
+  //   icon: <CIcon icon="cil-star" customClassName="nav-icon" />,
   //   items: [
   //     {
   //       _component: 'CNavItem',
@@ -360,6 +360,6 @@ const _nav = [
   //     },
   //   ],
   // },
-]
+];
 
-export default _nav
+export default _nav;

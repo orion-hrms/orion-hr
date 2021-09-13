@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { API, graphqlOperation } from "aws-amplify";
+import { listUsers } from "../../../graphql/queries";
 
-export default function Employees() {
-  return <div>Employee</div>;
+function Employees(props) {
+  const [inidata] = "";
+  const [empdata, setEmpdata] = useState([]);
+
+  useEffect(() => {
+    getAllEmpDataToState();
+  }, [inidata]);
+
+  const getAllEmpDataToState = async () => {
+    const result = await API.graphql(graphqlOperation(listUsers));
+    console.log("inside before build 1", result);
+    // let imageArray = await buildImageArray(result.data.listPictures.items);
+    // setImages(imageArray);
+    //setEmpdata(result)
+    // let empArray = await buildEmpArray(result.data.listUsers.items);
+    // setEmpdata(empArray);
+    console.log("insideeee employeee", result);
+  };
+
+  return (
+    <div>
+      <p>Hiiii</p>
+      {/* <EmployeeTable emptable={empdata} /> */}
+    </div>
+  );
 }
+export default Employees;
 
 // import React, { useState, useEffect } from 'react'
 // import { API, graphqlOperation } from 'aws-amplify'

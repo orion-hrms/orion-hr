@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import EmployeePerfo from './EmployeePerfo'
+import React, { useState, useEffect } from "react";
+import EmployeePerfo from "./EmployeePerfo";
 import {
   CAvatar,
   CButton,
@@ -17,28 +17,28 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
-} from '@coreui/react'
-import PropTypes from 'prop-types'
-import { CChartLine } from '@coreui/react-chartjs'
-import { getStyle, hexToRgba } from '@coreui/utils'
-import CIcon from '@coreui/icons-react'
+} from "@coreui/react";
+import PropTypes from "prop-types";
+import { CChartLine } from "@coreui/react-chartjs";
+import { getStyle, hexToRgba } from "@coreui/utils";
+import CIcon from "@coreui/icons-react";
 function EmployeeTable(emptable) {
-  const [employeestabledata, setEmployeesTableData] = useState(emptable)
-  console.log('empdata in emptable', emptable)
-  const [abc, setAbc] = useState(['ash', 'lolly', 'vip'])
-  const [numberOfEmp, setNumberOfEmp] = useState([])
+  const [employeestabledata, setEmployeesTableData] = useState(emptable);
+  console.log("empdata in emptable", emptable);
+  const [abc, setAbc] = useState(["ash", "lolly", "vip"]);
+  const [numberOfEmp, setNumberOfEmp] = useState([]);
   useEffect(() => {
-    setEmployeesTableData(emptable)
-    setNumberOfEmp(emptable.emptable.length)
-  }, [])
-  console.log('employeestabledata length', emptable.emptable.length)
-  console.log('employeestabledata length', numberOfEmp)
+    setEmployeesTableData(emptable);
+    setNumberOfEmp(emptable.emptable.length);
+  }, []);
+  console.log("employeestabledata length", emptable.emptable.length);
+  console.log("employeestabledata length", numberOfEmp);
 
   const displayPerfo = (obj) => {
-    console.log('obj', obj)
+    console.log("obj", obj);
 
-    alert('employee Id is ', obj.employeeName)
-  }
+    alert("employee Id is ", obj.employeeName);
+  };
   return (
     <div>
       <div>
@@ -46,13 +46,17 @@ function EmployeeTable(emptable) {
           <CTableHead color="light">
             <CTableRow>
               <CTableHeaderCell className="text-center">
-                <CIcon name="cil-people" />
+                <CIcon icon="cil-people" />
               </CTableHeaderCell>
               <CTableHeaderCell>EmployeeName</CTableHeaderCell>
               <CTableHeaderCell>EmpId</CTableHeaderCell>
-              <CTableHeaderCell className="text-center">Department</CTableHeaderCell>
+              <CTableHeaderCell className="text-center">
+                Department
+              </CTableHeaderCell>
               <CTableHeaderCell>Designation</CTableHeaderCell>
-              <CTableHeaderCell className="text-center">Pay Grade</CTableHeaderCell>
+              <CTableHeaderCell className="text-center">
+                Pay Grade
+              </CTableHeaderCell>
               <CTableHeaderCell>Activity</CTableHeaderCell>
             </CTableRow>
           </CTableHead>
@@ -103,7 +107,7 @@ function EmployeeTable(emptable) {
         </CTable>
       </div>
     </div>
-  )
+  );
 }
 
-export default EmployeeTable
+export default EmployeeTable;
