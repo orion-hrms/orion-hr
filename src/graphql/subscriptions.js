@@ -180,12 +180,22 @@ export const onCreateEmployeedetail = /* GraphQL */ `
     onCreateEmployeedetail {
       id
       UserId
+      UserName
+      UserEmail
       tag
       owner
       paygrade
       designation
       department
       joiningDate
+      file {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -196,12 +206,22 @@ export const onUpdateEmployeedetail = /* GraphQL */ `
     onUpdateEmployeedetail {
       id
       UserId
+      UserName
+      UserEmail
       tag
       owner
       paygrade
       designation
       department
       joiningDate
+      file {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -212,12 +232,22 @@ export const onDeleteEmployeedetail = /* GraphQL */ `
     onDeleteEmployeedetail {
       id
       UserId
+      UserName
+      UserEmail
       tag
       owner
       paygrade
       designation
       department
       joiningDate
+      file {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

@@ -51,14 +51,31 @@ type user
 type employeedetail @model {
   id: ID!
   UserId: String
+  UserName: String
+  UserEmail: String
   tag: String
   owner: String
-  paygrade: String
+  paygrade: PayGrade
   designation: String
-  department: String
+  department: Department
   joiningDate: String
+  # Refrence the S3Object  type from a field.
+  file: S3Object
 }
-
+enum Department {
+  HR
+  IT
+  Admin
+  Marketing
+  Sales
+}
+enum PayGrade {
+  A
+  B
+  C
+  D
+  Contract
+}
 type Tickets @model {
   id: ID!
   createdby: String
