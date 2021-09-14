@@ -20,11 +20,10 @@ import {
   createEmployee,
   createQuestion,
   createSurvey,
-} from "../graphql/mutations";
+} from "../../../../graphql/mutations";
 import { AmazonAIPredictionsProvider } from "@aws-amplify/predictions";
-import Thanks from "./thanks";
 
-import awsconfig from "../aws-exports";
+import awsconfig from "../../../../aws-exports";
 import Feedback from "react-bootstrap/esm/Feedback";
 
 Amplify.configure(awsconfig);
