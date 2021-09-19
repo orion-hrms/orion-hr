@@ -1,13 +1,11 @@
 type Survey @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
   surveyID: String
   surveyName: String!
   userId: String
 }
 
 type Question @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
-  questionID: ID!
+  questionID: String!
   surveyID: String
   question1: String!
   question2: String!
