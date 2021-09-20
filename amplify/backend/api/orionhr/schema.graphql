@@ -1,10 +1,18 @@
-type Survey @model @auth(rules: [{ allow: owner }]) {
+type Survey @model @key(
+  name: "bySurveyID"
+  fields: ["surveyID"]
+  queryField: "bySurveyID") {
+  id: ID!
   surveyID: ID!
   surveyName: String!
   userId: String
 }
 
-type Question @model @auth(rules: [{ allow: owner }]) {
+type Question @model @key(
+  name: "byQuestionID"
+  fields: ["questionID"]
+  queryField: "byQuestionID") {
+  id: ID!
   questionID: ID!
   surveyID: ID!
   question1: String!

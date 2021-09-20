@@ -14,10 +14,8 @@ import {
   CardBody,
   CardText,
 } from "reactstrap";
-import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import Amplify, { API, graphqlOperation, Predictions } from "aws-amplify";
 import {
-  createEmployee,
   createQuestion,
   createSurvey,
 } from "../../../graphql/mutations";
@@ -26,13 +24,14 @@ import { AmazonAIPredictionsProvider } from "@aws-amplify/predictions";
 import awsconfig from "../../../aws-exports";
 
 Amplify.configure(awsconfig);
-Amplify.addPluggable(new AmazonAIPredictionsProvider());
+
+Amplify.register(Predictions);
+Predictions.addPluggable(new AmazonAIPredictionsProvider());
 
 function Survey() {
+  const [name, setName] = useState("");
   const [response, setResponse] = useState("");
-  const [names, setName] = useState("");
-  const [emails, setEmail] = useState("");
-  const [positions, setPosition] = useState("");
+  const [userID, setUserID] = useState("");
   const [ques1, setQues1] = useState("");
   const [ques2, setQues2] = useState("");
   const [ques3, setQues3] = useState("");
@@ -40,9 +39,6 @@ function Survey() {
   const [textToInterpret, setTextToInterpret] = useState(
     "Please enter your suggestions here"
   );
-  
-  var mySurveyID = 0;
-  var myQuestionID = 0;
 
   function interpretFromPredictions() {
     Predictions.interpret({
@@ -97,19 +93,16 @@ function Survey() {
       },
     });
 
-    const todo = {
-      name: names,
-      email: emails,
-      position: positions,
-    };
+    const random = Math.floor(Math.random() * 100000) + 1;
 
     const forms = {
-      surveyID: mySurveyID,
-      surveyName: names
+      surveyID: random,
+      surveyName: name,
+      userID: userID
     }
 
     const qlist = {
-      questionID: myQuestionID,
+      surveyID: random,
       question1: ques1,
       question2: ques2,
       question3: ques3,
@@ -119,8 +112,11 @@ function Survey() {
     };
 
     try {
+      console.log(forms)
+      console.log(qlist)
       await API.graphql(graphqlOperation(createSurvey, { input: forms }));
       await API.graphql(graphqlOperation(createQuestion, { input: qlist }));
+      console.log("Success")
     } catch (err) {
       console.log("DB write error");
     }
@@ -130,8 +126,6 @@ function Survey() {
     e.preventDefault();
     interpretFromPredictions();
     sendToDB();
-    //mySurveyID += 1;
-    //myQuestionID += 1;
     alert("Thank you. We have received your application and will get back to you soon.")
   };
 
@@ -148,47 +142,33 @@ function Survey() {
               <CardBody>
                 <Form onSubmit={handleFormSubmit}>
                   <FormGroup>
-                    <Label for="exampleName">Name</Label>
+                    <Label for="exampleUserID">Employee ID</Label>
+                    <Input
+                      type="userID"
+                      name="userID"
+                      id="exampleUserID"
+                      placeholder="91989841798"
+                      value={userID}
+                      onChange={(e) => {
+                        setUserID(e.target.value);
+                      }}
+                    />
+                  </FormGroup>
+                  <br/>
+                  <FormGroup>
+                    <Label for="exampleName">Employee Name</Label>
                     <Input
                       type="name"
                       name="name"
-                      id="examplename"
+                      id="exampleName"
                       placeholder="John Doe"
-                      value={names}
+                      value={name}
                       onChange={(e) => {
                         setName(e.target.value);
                       }}
                     />
                   </FormGroup>
-                  <br />
-                  <FormGroup>
-                    <Label for="exampleEmail">Email</Label>
-                    <Input
-                      type="email"
-                      name="email"
-                      id="exampleEmail"
-                      placeholder="johndoe@sjsu.edu"
-                      value={emails}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                      }}
-                    />
-                  </FormGroup>
-                  <br />
-                  <FormGroup>
-                    <Label for="examplePosition">Position</Label>
-                    <Input
-                      type="position"
-                      name="position"
-                      id="exampleposition"
-                      placeholder="Research & Development"
-                      value={positions}
-                      onChange={(e) => {
-                        setPosition(e.target.value);
-                      }}
-                    />
-                  </FormGroup>
-                  <br />
+                  <br/>
                   <p>
                     <b>
                       The following questions will discuss your employement
@@ -290,7 +270,6 @@ function Survey() {
                   </FormGroup>
                 </Form>
               </CardBody>
-              <AmplifySignOut />
             </Card>
           </Container>
         </Jumbotron>
@@ -299,4 +278,4 @@ function Survey() {
   );
 }
 
-export default withAuthenticator(Survey);
+export default Survey;

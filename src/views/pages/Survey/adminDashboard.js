@@ -24,6 +24,12 @@ import awsconfig from "../aws-exports";
 Amplify.configure(awsconfig);
 
 function AdminDashboard() {
+  const [response, setResponse] = useState("");
+  const [ques1, setQues1] = useState("");
+  const [ques2, setQues2] = useState("");
+  const [ques3, setQues3] = useState("");
+  const [ques4, setQues4] = useState("");
+
   return (
     <div class="container-full-bg">
       <Jumbotron fluid>

@@ -311,3 +311,64 @@ export const listMeetings = /* GraphQL */ `
     }
   }
 `;
+export const bySurveyID = /* GraphQL */ `
+  query BySurveyID(
+    $surveyID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelSurveyFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    bySurveyID(
+      surveyID: $surveyID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        surveyID
+        surveyName
+        userId
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const byQuestionID = /* GraphQL */ `
+  query ByQuestionID(
+    $questionID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelQuestionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    byQuestionID(
+      questionID: $questionID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        questionID
+        surveyID
+        question1
+        question2
+        question3
+        question4
+        response
+        analyze
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
