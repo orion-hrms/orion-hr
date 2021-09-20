@@ -6,29 +6,11 @@
     }
   },
   "auth": {
-    "orionhr89662143": {
+    "orionhrf05f9f30": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
-      "customAuth": false,
-      "frontendAuthConfig": {
-        "loginMechanism": [
-          "EMAIL",
-          "PREFERRED_USERNAME",
-          "PHONE_NUMBER"
-        ],
-        "signupAttributes": [
-          "EMAIL"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
-        },
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ]
-      }
+      "customAuth": false
     }
   },
   "predictions": {
@@ -47,7 +29,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authorionhr89662143"
+              "userPoolId": "authorionhrf05f9f30"
             }
           },
           "additionalAuthenticationProviders": []
