@@ -150,12 +150,22 @@ export const getEmployeedetail = /* GraphQL */ `
     getEmployeedetail(id: $id) {
       id
       UserId
+      UserName
+      UserEmail
       tag
       owner
       paygrade
       designation
       department
       joiningDate
+      file {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -171,12 +181,22 @@ export const listEmployeedetails = /* GraphQL */ `
       items {
         id
         UserId
+        UserName
+        UserEmail
         tag
         owner
         paygrade
         designation
         department
         joiningDate
+        file {
+          id
+          bucket
+          region
+          key
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
