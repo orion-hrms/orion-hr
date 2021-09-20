@@ -93,16 +93,18 @@ function Survey() {
       },
     });
 
-    const random = Math.floor(Math.random() * 100000) + 1;
+    const random = (Math.floor(Math.random() * 100000) + 1).toString();
+    const qID = (Math.floor(Math.random() * 100000) + 1).toString();
 
     const forms = {
       surveyID: random,
       surveyName: name,
-      userID: userID
-    }
+      userID: userID,
+    };
 
     const qlist = {
       surveyID: random,
+      questionID: qID,  
       question1: ques1,
       question2: ques2,
       question3: ques3,
