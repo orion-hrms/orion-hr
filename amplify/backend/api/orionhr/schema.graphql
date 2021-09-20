@@ -5,7 +5,7 @@ type Survey @model @auth(rules: [{ allow: owner }]) {
 }
 
 type Question @model @auth(rules: [{ allow: owner }]) {
-  questionID: String!
+  questionID: ID!
   surveyID: String
   question1: String!
   question2: String!
