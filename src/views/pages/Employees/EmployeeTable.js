@@ -40,21 +40,13 @@ function EmployeeTable(emptable) {
   console.log("employeestabledata length", emptable.emptable.length);
   console.log("employeestabledata length", numberOfEmp);
 
-  const displayPerfo = (obj) => {
-    console.log("obj", obj);
-
-    alert("employee Id is ", obj.employeeName);
+  const sendEmail = (message) => {
+    // console.log("obj", obj);
+    var email = message;
+    // var subject = message.subject;
+    // var emailBody = "Hi " + message.from;
+    document.location = "mailto:" + email;
   };
-  const storageUrl = "https://archana-emp-images.s3.amazonaws.com/";
-  const image1 = "image1";
-
-  const src = `${storageUrl}${image1}.jpeg`;
-  // const src =
-  //   "`https://archana-emp-images.s3.amazonaws.com/`+`${image1}`+`.jpeg`";
-  // console.log("####### src", src);
-
-  var name = "Brendan";
-  console.log(`Yo, ${name}!`);
 
   return (
     <div>
@@ -85,7 +77,7 @@ function EmployeeTable(emptable) {
             ))} */}
             {emptable.emptable.map((obj, index) => (
               <>
-                <CTableRow key={obj.id} onClick={() => displayPerfo(obj.id)}>
+                <CTableRow key={obj.id}>
                   <CTableDataCell className="text-center">
                     <CAvatar
                       size="md"
@@ -110,7 +102,9 @@ function EmployeeTable(emptable) {
                   </CTableDataCell>
                   <CTableDataCell>
                     <p>{obj.id}</p>
-                    <p>{obj.UserEmail}</p>
+                    <p onClick={() => sendEmail(obj.UserEmail)}>
+                      {obj.UserEmail}
+                    </p>
                   </CTableDataCell>
                   <CTableDataCell className="text-center">
                     <CIcon size="xl" name="cif-us" title="us" id="us" />

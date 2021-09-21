@@ -16,6 +16,28 @@ import { getStyle } from "@coreui/utils";
 import { CChartBar, CChartLine } from "@coreui/react-chartjs";
 import CIcon from "@coreui/icons-react";
 
+const showAnalysis = () => {
+  // <p>
+  //   Check out{" "}
+  //   <a
+  //     href="https://www.freecodecamp.org/"
+  //     target="_blank"
+  //     rel="noopener noreferrer"
+  //   >
+  //     freeCodeCamp
+  //   </a>
+  //   .
+  // </p>;
+  // location.href = "http://localhost:8868/,'_blank'";
+  window.open(
+    "http://localhost:8866/",
+    "_blank" // <- This is what makes it open in a new window.
+  );
+};
+const OpenEmployeeData = () => {
+  location.href = "http://localhost:8868/,'_blank'";
+};
+
 const WidgetsDropdown = () => {
   // const result = API.graphql(graphqlOperation(listEmployeedetails));
 
@@ -47,6 +69,8 @@ const WidgetsDropdown = () => {
           value={empdata}
           change={<>{/* (-12.4% <CIcon icon="cil-arrow-bottom" />) */}</>}
           title="Users"
+          to="/employees"
+          // onClick={() => OpenEmployeeData()}
           action={
             <CDropdown alignment="end">
               <CDropdownToggle
@@ -138,7 +162,7 @@ const WidgetsDropdown = () => {
           }
         />
       </CCol>
-      <CCol sm="6" lg="3">
+      {/* <CCol sm="6" lg="3">
         <CWidgetDropdown
           className="mb-4"
           color="info"
@@ -251,18 +275,19 @@ const WidgetsDropdown = () => {
             />
           }
         />
-      </CCol>
+      </CCol> */}
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           className="mb-4"
           color="warning"
-          value="2.49%"
+          // value="2.49%"
           change={
             <>
               (84.7% <CIcon icon="cil-arrow-top" />)
             </>
           }
-          title="Reminders"
+          title="Show Analysis"
+          onClick={() => showAnalysis()}
           action={
             <CDropdown alignment="end">
               <CDropdownToggle
@@ -276,7 +301,11 @@ const WidgetsDropdown = () => {
                 />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
+                <CDropdownItem
+                  onClick={() => <a href="http://localhost:8868/"></a>}
+                >
+                  Action
+                </CDropdownItem>
                 <CDropdownItem>Another action</CDropdownItem>
                 <CDropdownItem>Something else here...</CDropdownItem>
                 <CDropdownItem disabled>Disabled action</CDropdownItem>
@@ -338,7 +367,7 @@ const WidgetsDropdown = () => {
           }
         />
       </CCol>
-      <CCol sm="6" lg="3">
+      {/* <CCol sm="6" lg="3">
         <CWidgetDropdown
           className="mb-4"
           color="danger"
@@ -437,7 +466,7 @@ const WidgetsDropdown = () => {
             />
           }
         />
-      </CCol>
+      </CCol> */}
     </CRow>
   );
 };

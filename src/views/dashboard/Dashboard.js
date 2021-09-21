@@ -37,6 +37,25 @@ const Dashboard = () => {
   return (
     <>
       <WidgetsDropdown />
+      {/* <button onClick={() => "https://localhost:8868/"}> ML Insight</button> */}
+      <a href="http://localhost:8866/">Show Analysis</a>
+
+      {/* <iframe
+        src="http://www.w3schools.com"
+        title="W3Schools Free Online Web Tutorials"
+      ></iframe>
+      <iframe src="http://localhost:8868/" title="ML"></iframe>
+
+      <iframe src="https://observablehq.com/" width="400" height="400"></iframe> */}
+
+      {/* <embed src="https://ide.geeksforgeeks.org" width="400" height="400" /> */}
+
+      {/* <object
+        type="text/html"
+        data="http://localhost:8869/"
+        width="800px"
+        height="600px"
+      /> */}
       {/* <CCard className="mb-4">
         <CCardBody>
           <CRow>

@@ -1,6 +1,7 @@
 import React from "react";
 import CIcon from "@coreui/icons-react";
 import { NavLink } from "react-router-dom";
+import { button } from "@aws-amplify/ui";
 
 const _nav = [
   {
@@ -65,6 +66,17 @@ const _nav = [
     as: NavLink,
     anchor: "Survey",
     to: "/survey",
+    icon: <CIcon icon="cil-calendar-check" customClassName="nav-icon" />,
+    badge: {
+      color: "info",
+      text: "NEW",
+    },
+  },
+  {
+    _component: "CNavItem",
+    as: NavLink,
+    anchor: " Email",
+    to: "/email",
     icon: <CIcon icon="cil-calendar-check" customClassName="nav-icon" />,
     badge: {
       color: "info",
