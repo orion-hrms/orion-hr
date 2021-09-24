@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  Redirect  } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
   Form,
   FormGroup,
@@ -15,10 +15,7 @@ import {
   CardText,
 } from "reactstrap";
 import Amplify, { API, graphqlOperation, Predictions } from "aws-amplify";
-import {
-  createQuestion,
-  createSurvey,
-} from "../../../graphql/mutations";
+import { createQuestion, createSurvey } from "../../../graphql/mutations";
 import { AmazonAIPredictionsProvider } from "@aws-amplify/predictions";
 
 import awsconfig from "../../../aws-exports";
@@ -99,12 +96,12 @@ function Survey() {
     const forms = {
       surveyID: random,
       surveyName: name,
-      userID: userID,
+      userId: userID,
     };
 
     const qlist = {
       surveyID: random,
-      questionID: qID,  
+      questionID: qID,
       question1: ques1,
       question2: ques2,
       question3: ques3,
@@ -114,11 +111,11 @@ function Survey() {
     };
 
     try {
-      console.log(forms)
-      console.log(qlist)
+      console.log(forms);
+      console.log(qlist);
       await API.graphql(graphqlOperation(createSurvey, { input: forms }));
       await API.graphql(graphqlOperation(createQuestion, { input: qlist }));
-      console.log("Success")
+      console.log("Success");
     } catch (err) {
       console.log("DB write error");
     }
@@ -128,7 +125,9 @@ function Survey() {
     e.preventDefault();
     interpretFromPredictions();
     sendToDB();
-    alert("Thank you. We have received your application and will get back to you soon.")
+    alert(
+      "Thank you. We have received your application and will get back to you soon."
+    );
   };
 
   return (
@@ -156,7 +155,7 @@ function Survey() {
                       }}
                     />
                   </FormGroup>
-                  <br/>
+                  <br />
                   <FormGroup>
                     <Label for="exampleName">Employee Name</Label>
                     <Input
@@ -170,7 +169,7 @@ function Survey() {
                       }}
                     />
                   </FormGroup>
-                  <br/>
+                  <br />
                   <p>
                     <b>
                       The following questions will discuss your employement
@@ -192,7 +191,9 @@ function Survey() {
                       <option value={"Agree"}>Agree</option>
                       <option value={"Neutral"}>Neutral</option>
                       <option value={"Disagree"}>Disagree</option>
-                      <option value={"Strongly Disagree"}>Strongly Disagree</option>
+                      <option value={"Strongly Disagree"}>
+                        Strongly Disagree
+                      </option>
                     </Input>
                   </FormGroup>
                   <br />
@@ -210,7 +211,9 @@ function Survey() {
                       <option value={"Agree"}>Agree</option>
                       <option value={"Neutral"}>Neutral</option>
                       <option value={"Disagree"}>Disagree</option>
-                      <option value={"Strongly Disagree"}>Strongly Disagree</option>
+                      <option value={"Strongly Disagree"}>
+                        Strongly Disagree
+                      </option>
                     </Input>
                   </FormGroup>
                   <br />
@@ -229,7 +232,9 @@ function Survey() {
                       <option value={"Agree"}>Agree</option>
                       <option value={"Neutral"}>Neutral</option>
                       <option value={"Disagree"}>Disagree</option>
-                      <option value={"Strongly Disagree"}>Strongly Disagree</option>
+                      <option value={"Strongly Disagree"}>
+                        Strongly Disagree
+                      </option>
                     </Input>
                   </FormGroup>
                   <br />
@@ -248,7 +253,9 @@ function Survey() {
                       <option value={"Agree"}>Agree</option>
                       <option value={"Neutral"}>Neutral</option>
                       <option value={"Disagree"}>Disagree</option>
-                      <option value={"Strongly Disagree"}>Strongly Disagree</option>
+                      <option value={"Strongly Disagree"}>
+                        Strongly Disagree
+                      </option>
                     </Input>
                   </FormGroup>
                   <br />
