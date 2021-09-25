@@ -10,7 +10,7 @@ import {
   CardBody,
   CardText,
 } from "reactstrap";
-import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
+import {AmplifySignOut } from "@aws-amplify/ui-react";
 import Amplify, { API, graphqlOperation, Predictions } from "aws-amplify";
 import {
   createEmployee,
@@ -107,4 +107,4 @@ function AdminDashboard() {
     </div>
   );
 }
-export default withAuthenticator(AdminDashboard);
+export default AdminDashboard;
