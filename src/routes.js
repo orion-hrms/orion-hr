@@ -12,6 +12,7 @@ const Tickets = React.lazy(() => import("./views/pages/Tickets/Tickets"));
 const Forum = React.lazy(() => import("./views/pages/Forum/Forum"));
 const Sprint = React.lazy(() => import("./views/pages/Sprint/Sprint"));
 const Survey = React.lazy(() => import("./views/pages/Survey/Survey"));
+const AdminDashboard = React.lazy(() => import("./views/pages/AdminDashboard/AdminDashboard"));
 
 const Accordion = React.lazy(() =>
   import("./views/components/base/accordion/Accordion")
@@ -121,7 +122,8 @@ const routes = [
   { path: "/employees", name: "Employees", component: Employees },
   { path: "/meetings", name: "Meetings", component: Meetings },
   { path: "/tickets", name: "Tickets", component: Tickets },
-  { path: "/survey", name: "Survey", component: Survey },
+  { path: "/survey", name: "Survey", component: Survey }, 
+  { path: "/AdminDashboard", name: "AdminDashboard", component: AdminDashboard },
   { path: "/theme/typography", name: "Typography", component: Typography },
   { path: "/sprint", name: "Sprint", component: Sprint },
   { path: "/forum", name: "Forum", component: Forum },
