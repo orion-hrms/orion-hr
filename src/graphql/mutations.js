@@ -219,12 +219,22 @@ export const createEmployeedetail = /* GraphQL */ `
     createEmployeedetail(input: $input, condition: $condition) {
       id
       UserId
+      UserName
+      UserEmail
       tag
       owner
       paygrade
       designation
       department
       joiningDate
+      file {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -238,12 +248,22 @@ export const updateEmployeedetail = /* GraphQL */ `
     updateEmployeedetail(input: $input, condition: $condition) {
       id
       UserId
+      UserName
+      UserEmail
       tag
       owner
       paygrade
       designation
       department
       joiningDate
+      file {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -257,12 +277,22 @@ export const deleteEmployeedetail = /* GraphQL */ `
     deleteEmployeedetail(input: $input, condition: $condition) {
       id
       UserId
+      UserName
+      UserEmail
       tag
       owner
       paygrade
       designation
       department
       joiningDate
+      file {
+        id
+        bucket
+        region
+        key
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
