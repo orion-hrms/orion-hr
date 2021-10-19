@@ -43,7 +43,7 @@ const _nav = [
     as: NavLink,
     anchor: "Sprint",
     to: "/sprint",
-    icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
+    icon: <CIcon icon="cil-graph" customClassName="nav-icon" />,
     badge: {
       color: "info",
       text: "NEW",
@@ -54,7 +54,7 @@ const _nav = [
     as: NavLink,
     anchor: "Forum",
     to: "/forum",
-    icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
+    icon: <CIcon icon="cil-pen" customClassName="nav-icon" />,
     badge: {
       color: "info",
       text: "NEW",
@@ -65,7 +65,7 @@ const _nav = [
     as: NavLink,
     anchor: "Survey",
     to: "/survey",
-    icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
+    icon: <CIcon icon="cil-calendar-check" customClassName="nav-icon" />,
     badge: {
       color: "info",
       text: "NEW",
@@ -82,6 +82,7 @@ const _nav = [
       text: "NEW",
     },
   },
+
 ];
 
 export default _nav;

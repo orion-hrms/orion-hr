@@ -1,4 +1,8 @@
-import React from "react";
+import { API, graphqlOperation } from "aws-amplify";
+import React, { useState, useEffect } from "react";
+import { listEmployeedetails } from "../../../graphql/queries";
+import { useHistory } from "react-router-dom";
+
 import {
   CRow,
   CCol,
@@ -13,18 +17,35 @@ import { CChartBar, CChartLine } from "@coreui/react-chartjs";
 import CIcon from "@coreui/icons-react";
 
 const WidgetsDropdown = () => {
+  // const result = API.graphql(graphqlOperation(listEmployeedetails));
+
+  const history = useHistory();
+
+  const [inidata] = "";
+  const [empdata, setEmpdata] = useState([]);
+
+  useEffect(() => {
+    getAllEmpDataToState();
+  }, [inidata]);
+
+  const navigateTo = () => history.push("/employees");
+  const getAllEmpDataToState = async () => {
+    const result = await API.graphql(graphqlOperation(listEmployeedetails));
+    console.log("inside before build 1", result);
+    const empcount = result.data.listEmployeedetails.items.length;
+    setEmpdata(empcount);
+
+    console.log("ressss", result, empcount);
+  };
+
   return (
     <CRow>
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           className="mb-4"
           color="primary"
-          value="26K"
-          change={
-            <>
-              (-12.4% <CIcon icon="cil-arrow-bottom" />)
-            </>
-          }
+          value={empdata}
+          change={<>{/* (-12.4% <CIcon icon="cil-arrow-bottom" />) */}</>}
           title="Users"
           action={
             <CDropdown alignment="end">
@@ -39,10 +60,12 @@ const WidgetsDropdown = () => {
                 />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
-                <CDropdownItem>Another action</CDropdownItem>
+                <CDropdownItem onClick={navigateTo}>
+                  Open Employees Data
+                </CDropdownItem>
+                {/* <CDropdownItem>Another action</CDropdownItem>
                 <CDropdownItem>Something else here...</CDropdownItem>
-                <CDropdownItem disabled>Disabled action</CDropdownItem>
+                <CDropdownItem disabled>Disabled action</CDropdownItem> */}
               </CDropdownMenu>
             </CDropdown>
           }
