@@ -6974,6 +6974,11 @@
     "combined-stream" "^1.0.8"
     "mime-types" "^2.1.12"
 
+"fortawesome@0.0.1-security":
+  "integrity" "sha512-o/pwn9ZSnveFLYP0d5IejSwz0rpGMDQsBaYVvR8WXSvnxILIwh7IUJK0P90QMF4cnIyouVF2BGrz0LEVSyzimA=="
+  "resolved" "https://registry.npmjs.org/fortawesome/-/fortawesome-0.0.1-security.tgz"
+  "version" "0.0.1-security"
+
 "forwarded@0.2.0":
   "integrity" "sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow=="
   "resolved" "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz"
