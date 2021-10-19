@@ -1,6 +1,6 @@
 projects:
   orionhr:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/orionhr/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
