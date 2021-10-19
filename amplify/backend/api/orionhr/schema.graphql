@@ -1,14 +1,47 @@
-type Survey @model @auth(rules: [{ allow: owner }]) {
+type Survey @model @key(
+  name: "bySurveyID"
+  fields: ["surveyID"]
+  queryField: "bySurveyID") 
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Admin"]
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: owner
+        mutations: [create]
+      }
+    ]
+  )
+  {
   id: ID!
-  surveyID: String
+  surveyID: String!
   surveyName: String!
   userId: String
 }
 
-type Question @model @auth(rules: [{ allow: owner }]) {
+type Question @model
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Admin"]
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: owner
+        mutations: [create]
+      }
+    ]
+  )
+  {
   id: ID!
-  questionID: ID!
-  surveyID: String
+  questionID: String!
+  surveyID: String!
   question1: String!
   question2: String!
   question3: String!

@@ -71,7 +71,18 @@ const _nav = [
       text: "NEW",
     },
   },
-  
+  {
+    _component: "CNavItem",
+    as: NavLink,
+    anchor: "AdminDashboard",
+    to: "/AdminDashboard",
+    icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
+    badge: {
+      color: "info",
+      text: "NEW",
+    },
+  },
+
 ];
 
 export default _nav;

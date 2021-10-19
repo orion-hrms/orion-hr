@@ -311,3 +311,31 @@ export const listMeetings = /* GraphQL */ `
     }
   }
 `;
+export const bySurveyID = /* GraphQL */ `
+  query BySurveyID(
+    $surveyID: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelSurveyFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    bySurveyID(
+      surveyID: $surveyID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        surveyID
+        surveyName
+        userId
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
