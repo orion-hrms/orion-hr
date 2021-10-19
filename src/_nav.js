@@ -71,6 +71,7 @@ const _nav = [
       text: "NEW",
     },
   },
+  
 ];
 
 export default _nav;
