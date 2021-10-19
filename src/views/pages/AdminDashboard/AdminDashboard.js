@@ -31,6 +31,26 @@ function AdminDashboard() {
   const [ques3, setQues3] = useState("");
   const [ques4, setQues4] = useState("");
 
+  function listQ1(event) {
+    console.log(event.target.value);
+    setQues1(event.target.value);
+  }
+
+  function listQ2(event) {
+    console.log(event.target.value);
+    setQues1(event.target.value);
+  }
+
+  function listQ3(event) {
+    console.log(event.target.value);
+    setQues1(event.target.value);
+  }
+
+  function listQ4(event) {
+    console.log(event.target.value);
+    setQues1(event.target.value);
+  }
+
   return (
     <div className="Text">
       <div class="container-full-bg">
