@@ -41,6 +41,18 @@ const _nav = [
   {
     _component: "CNavItem",
     as: NavLink,
+    anchor: "Chat",
+    to: "/chat",
+    icon: <CIcon icon="cil-list" customClassName="nav-icon" />,
+    badge: {
+      color: "info",
+      text: "NEW",
+    },
+  },
+
+  {
+    _component: "CNavItem",
+    as: NavLink,
     anchor: "Sprint",
     to: "/sprint",
     icon: <CIcon icon="cil-graph" customClassName="nav-icon" />,
