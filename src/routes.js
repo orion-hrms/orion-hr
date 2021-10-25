@@ -8,6 +8,7 @@ const Typography = React.lazy(() =>
 );
 const Employees = React.lazy(() => import("./views/pages/Employees/Employees"));
 const Meetings = React.lazy(() => import("./views/pages/Meetings/Meetings"));
+const Chat = React.lazy(() => import("./views/pages/Chat/Chat"));
 const Tickets = React.lazy(() => import("./views/pages/Tickets/Tickets"));
 const Forum = React.lazy(() => import("./views/pages/Forum/Forum"));
 const Sprint = React.lazy(() => import("./views/pages/Sprint/Sprint"));
@@ -123,6 +124,7 @@ const routes = [
   { path: "/theme/colors", name: "Colors", component: Colors },
   { path: "/employees", name: "Employees", component: Employees },
   { path: "/meetings", name: "Meetings", component: Meetings },
+  { path: "/chat", name: "Chat", component: Chat },
   { path: "/tickets", name: "Tickets", component: Tickets },
   { path: "/survey", name: "Survey", component: Survey }, 
   { path: "/AdminDashboard", name: "AdminDashboard", component: AdminDashboard },
