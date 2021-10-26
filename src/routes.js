@@ -13,6 +13,8 @@ const Tickets = React.lazy(() => import("./views/pages/Tickets/Tickets"));
 const Forum = React.lazy(() => import("./views/pages/Forum/Forum"));
 const Sprint = React.lazy(() => import("./views/pages/Sprint/Sprint"));
 const Survey = React.lazy(() => import("./views/pages/Survey/survey"));
+const Email = React.lazy(() => import("./views/pages/Email/Email"));
+
 const DataInsight = React.lazy(() =>
   import("./views/pages/DataInsight/DataInsight")
 );
@@ -140,6 +142,7 @@ const routes = [
   { path: "/sprint", name: "Sprint", component: Sprint },
   { path: "/forum", name: "Forum", component: Forum },
   { path: "/base", name: "Base", component: Cards, exact: true },
+  { path: "/email", name: "Email", component: Email },
   { path: "/base/accordion", name: "Accordion", component: Accordion },
   { path: "/base/breadcrumbs", name: "Breadcrumbs", component: Breadcrumbs },
   { path: "/base/cards", name: "Cards", component: Cards },
