@@ -86,6 +86,17 @@ const _nav = [
   {
     _component: "CNavItem",
     as: NavLink,
+    anchor: " Data Insights",
+    to: "/datainsight",
+    icon: <CIcon icon="cilTags" customClassName="nav-icon" />,
+    badge: {
+      color: "info",
+      text: "NEW",
+    },
+  },
+  {
+    _component: "CNavItem",
+    as: NavLink,
     anchor: "AdminDashboard",
     to: "/AdminDashboard",
     icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
@@ -94,7 +105,6 @@ const _nav = [
       text: "NEW",
     },
   },
-
 ];
 
 export default _nav;
