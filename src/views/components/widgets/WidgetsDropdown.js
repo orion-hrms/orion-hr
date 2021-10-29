@@ -17,10 +17,10 @@ import { CChartBar, CChartLine } from "@coreui/react-chartjs";
 import CIcon from "@coreui/icons-react";
 
 const showFreshAnalysis = () => {
-  window.open(
-    "http://localhost:8866/",
-    "_blank" // <- This is what makes it open in a new window.
-  );
+  // window.open(
+  //   "http://localhost:8866/",
+  //   "_blank" // <- This is what makes it open in a new window.
+  // );
 };
 
 const showAnalysis = () => {
@@ -301,7 +301,7 @@ const WidgetsDropdown = () => {
               </CDropdownToggle>
               <CDropdownMenu>
                 <CDropdownItem
-                  onClick={() => <a href="http://localhost:8868/"></a>}
+                // onClick={() => <a href="http://localhost:8868/"></a>}
                 >
                   Action
                 </CDropdownItem>

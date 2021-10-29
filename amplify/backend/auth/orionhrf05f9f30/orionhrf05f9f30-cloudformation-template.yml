@@ -9,6 +9,18 @@ Parameters:
     Type: String
 
   
+  
+  
+  functionorionhrf05f9f30PostConfirmationArn:
+    Type: String
+    Default: functionorionhrf05f9f30PostConfirmationArn
+  
+  functionorionhrf05f9f30PostConfirmationName:
+    Type: String
+    Default: functionorionhrf05f9f30PostConfirmationName
+  
+  
+  
 
     
   identityPoolName:
@@ -75,10 +87,10 @@ Parameters:
   userpoolClientGenerateSecret:
     Type: String
             
-    
   userpoolClientRefreshTokenValidity:
-    Type: Number
-          
+    Type: String
+  
+            
         
   userpoolClientWriteAttributes:
     Type: CommaDelimitedList
@@ -117,7 +129,6 @@ Parameters:
   userPoolGroupList:
     Type: CommaDelimitedList
       
-            
   serviceName:
     Type: String
   
@@ -128,6 +139,47 @@ Parameters:
             
         
   dependsOn:
+    Type: CommaDelimitedList
+      
+  
+  thirdPartyAuth:
+    Type: String
+            
+  
+  userPoolGroups:
+    Type: String
+            
+  
+  adminQueries:
+    Type: String
+            
+  triggers:
+    Type: String
+  
+            
+  
+  hostedUI:
+    Type: String
+            
+            
+      
+  parentStack:
+    Type: String
+        
+  authTriggerConnections:
+    Type: String
+  
+            
+  
+  breakCircularDependency:
+    Type: String
+            
+        
+  permissions:
+    Type: CommaDelimitedList
+      
+        
+  authProviders:
     Type: CommaDelimitedList
       
 Conditions:
