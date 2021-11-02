@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import "./scss/style.scss";
 import { Auth } from "aws-amplify";
@@ -25,20 +25,21 @@ const Page500 = React.lazy(() => import("./views/pages/page500/Page500"));
 //   .catch((err) => console.log(err));
 
 const App = () => {
+  const [userData, setUserData] = useState([]);
   useEffect(() => {
     getAllUserDataToState();
   }, []);
 
   const getAllUserDataToState = async () => {
-    // const { attributes } = await Auth.currentAuthenticatedUser();
     let user = await Auth.currentAuthenticatedUser();
     const { attributes } = user;
-    console.log("userrrrrrr", user);
     console.log("userrrr2", user.attributes);
-    console.log("userrrr2", user.attributes);
+    setUserData(user);
     // event.request.usernameParameter
     return user;
   };
+
+  console.log("User Data is ", userData);
   return (
     <HashRouter>
       <React.Suspense fallback={loading}>
