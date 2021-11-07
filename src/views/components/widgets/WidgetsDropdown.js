@@ -16,6 +16,27 @@ import { getStyle } from "@coreui/utils";
 import { CChartBar, CChartLine } from "@coreui/react-chartjs";
 import CIcon from "@coreui/icons-react";
 
+const showFreshAnalysis = () => {
+  // window.open(
+  //   "http://localhost:8866/",
+  //   "_blank" // <- This is what makes it open in a new window.
+  // );
+};
+
+const showAnalysis = () => {
+  window.open(
+    "http://localhost:8866/",
+    "_blank" // <- This is what makes it open in a new window.
+  );
+};
+
+const showDetailedAnalysis = () => {
+  window.open(
+    "https://sagemaker-mtp-hr.s3.us-east-2.amazonaws.com/Compare.html",
+    "_blank" // <- This is what makes it open in a new window.
+  );
+};
+
 const WidgetsDropdown = () => {
   // const result = API.graphql(graphqlOperation(listEmployeedetails));
 
@@ -47,6 +68,8 @@ const WidgetsDropdown = () => {
           value={empdata}
           change={<>{/* (-12.4% <CIcon icon="cil-arrow-bottom" />) */}</>}
           title="Users"
+          to="/employees"
+          // onClick={() => OpenEmployeeData()}
           action={
             <CDropdown alignment="end">
               <CDropdownToggle
@@ -138,7 +161,7 @@ const WidgetsDropdown = () => {
           }
         />
       </CCol>
-      <CCol sm="6" lg="3">
+      {/* <CCol sm="6" lg="3">
         <CWidgetDropdown
           className="mb-4"
           color="info"
@@ -251,18 +274,19 @@ const WidgetsDropdown = () => {
             />
           }
         />
-      </CCol>
+      </CCol> */}
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           className="mb-4"
-          color="warning"
-          value="2.49%"
+          color="danger"
+          // value="2.49%"
           change={
             <>
               (84.7% <CIcon icon="cil-arrow-top" />)
             </>
           }
-          title="Reminders"
+          title="Fetch Fresh Analysis"
+          onClick={() => showFreshAnalysis()}
           action={
             <CDropdown alignment="end">
               <CDropdownToggle
@@ -276,7 +300,11 @@ const WidgetsDropdown = () => {
                 />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
+                <CDropdownItem
+                // onClick={() => <a href="http://localhost:8868/"></a>}
+                >
+                  Action
+                </CDropdownItem>
                 <CDropdownItem>Another action</CDropdownItem>
                 <CDropdownItem>Something else here...</CDropdownItem>
                 <CDropdownItem disabled>Disabled action</CDropdownItem>
@@ -338,7 +366,101 @@ const WidgetsDropdown = () => {
           }
         />
       </CCol>
+
       <CCol sm="6" lg="3">
+        <CWidgetDropdown
+          className="mb-4"
+          color="warning"
+          // value="2.49%"
+          change={
+            <>
+              (84.7% <CIcon icon="cil-arrow-top" />)
+            </>
+          }
+          title="Show Detailed Analysis"
+          onClick={() => showDetailedAnalysis()}
+          action={
+            <CDropdown alignment="end">
+              <CDropdownToggle
+                color="transparent"
+                caret={false}
+                className="p-0"
+              >
+                <CIcon
+                  icon="cil-options"
+                  className="text-high-emphasis-inverse"
+                />
+              </CDropdownToggle>
+              <CDropdownMenu>
+                <CDropdownItem
+                  onClick={() => (
+                    <a href="https://sagemaker-mtp-hr.s3.us-east-2.amazonaws.com/Compare.html"></a>
+                  )}
+                >
+                  Action
+                </CDropdownItem>
+                <CDropdownItem>Another action</CDropdownItem>
+                <CDropdownItem>Something else here...</CDropdownItem>
+                <CDropdownItem disabled>Disabled action</CDropdownItem>
+              </CDropdownMenu>
+            </CDropdown>
+          }
+          chart={
+            <CChartLine
+              className="mt-3"
+              style={{ height: "70px" }}
+              data={{
+                labels: [
+                  "January",
+                  "February",
+                  "March",
+                  "April",
+                  "May",
+                  "June",
+                  "July",
+                ],
+                datasets: [
+                  {
+                    label: "My First dataset",
+                    backgroundColor: "rgba(255,255,255,.2)",
+                    borderColor: "rgba(255,255,255,.55)",
+                    data: [78, 81, 80, 45, 34, 12, 40],
+                    fill: true,
+                  },
+                ],
+              }}
+              options={{
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                },
+                maintainAspectRatio: false,
+                scales: {
+                  x: {
+                    display: false,
+                  },
+                  y: {
+                    display: false,
+                  },
+                },
+                elements: {
+                  line: {
+                    borderWidth: 2,
+                    tension: 0.4,
+                  },
+                  point: {
+                    radius: 0,
+                    hitRadius: 10,
+                    hoverRadius: 4,
+                  },
+                },
+              }}
+            />
+          }
+        />
+      </CCol>
+      {/* <CCol sm="6" lg="3">
         <CWidgetDropdown
           className="mb-4"
           color="danger"
@@ -437,7 +559,7 @@ const WidgetsDropdown = () => {
             />
           }
         />
-      </CCol>
+      </CCol> */}
     </CRow>
   );
 };

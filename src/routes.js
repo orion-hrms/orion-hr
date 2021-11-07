@@ -13,7 +13,14 @@ const Tickets = React.lazy(() => import("./views/pages/Tickets/Tickets"));
 const Forum = React.lazy(() => import("./views/pages/Forum/Forum"));
 const Sprint = React.lazy(() => import("./views/pages/Sprint/Sprint"));
 const Survey = React.lazy(() => import("./views/pages/Survey/survey"));
-const AdminDashboard = React.lazy(() => import("./views/pages/AdminDashboard/AdminDashboard"));
+const Email = React.lazy(() => import("./views/pages/Email/Email"));
+
+const DataInsight = React.lazy(() =>
+  import("./views/pages/DataInsight/DataInsight")
+);
+const AdminDashboard = React.lazy(() =>
+  import("./views/pages/AdminDashboard/AdminDashboard")
+);
 
 const Accordion = React.lazy(() =>
   import("./views/components/base/accordion/Accordion")
@@ -115,8 +122,6 @@ const Widgets = React.lazy(() => import("./views/components/widgets/Widgets"));
 const Charts = React.lazy(() => import("./views/components/charts/Charts"));
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 
-
-
 const routes = [
   { path: "/", exact: true, name: "Home" },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
@@ -126,12 +131,18 @@ const routes = [
   { path: "/meetings", name: "Meetings", component: Meetings },
   { path: "/chat", name: "Chat", component: Chat },
   { path: "/tickets", name: "Tickets", component: Tickets },
-  { path: "/survey", name: "Survey", component: Survey }, 
-  { path: "/AdminDashboard", name: "AdminDashboard", component: AdminDashboard },
+  { path: "/datainsight", name: "DataInsight", component: DataInsight },
+  { path: "/survey", name: "Survey", component: Survey },
+  {
+    path: "/AdminDashboard",
+    name: "AdminDashboard",
+    component: AdminDashboard,
+  },
   { path: "/theme/typography", name: "Typography", component: Typography },
   { path: "/sprint", name: "Sprint", component: Sprint },
   { path: "/forum", name: "Forum", component: Forum },
   { path: "/base", name: "Base", component: Cards, exact: true },
+  { path: "/email", name: "Email", component: Email },
   { path: "/base/accordion", name: "Accordion", component: Accordion },
   { path: "/base/breadcrumbs", name: "Breadcrumbs", component: Breadcrumbs },
   { path: "/base/cards", name: "Cards", component: Cards },
