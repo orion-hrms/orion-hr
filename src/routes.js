@@ -12,6 +12,8 @@ const Chat = React.lazy(() => import("./views/pages/Chat/Chat"));
 const Tickets = React.lazy(() => import("./views/pages/Tickets/Tickets"));
 const Forum = React.lazy(() => import("./views/pages/Forum/Forum"));
 const Sprint = React.lazy(() => import("./views/pages/Sprint/Sprint"));
+const SprintPerf = React.lazy(() => import("./views/pages/SprintPerf/SprintPerf"));
+const Timesheet = React.lazy(() => import("./views/pages/Timesheet/Timesheet"));
 const Survey = React.lazy(() => import("./views/pages/Survey/survey"));
 const Email = React.lazy(() => import("./views/pages/Email/Email"));
 
@@ -140,6 +142,8 @@ const routes = [
   },
   { path: "/theme/typography", name: "Typography", component: Typography },
   { path: "/sprint", name: "Sprint", component: Sprint },
+  { path: "/sprintperf", name: "SprintPerf", component: SprintPerf },
+  { path: "/timesheet", name: "Timesheet", component: Timesheet },
   { path: "/forum", name: "Forum", component: Forum },
   { path: "/base", name: "Base", component: Cards, exact: true },
   { path: "/email", name: "Email", component: Email },

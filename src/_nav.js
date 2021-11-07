@@ -61,6 +61,31 @@ const _nav = [
       text: "NEW",
     },
   },
+
+  {
+    _component: "CNavItem",
+    as: NavLink,
+    anchor: "Sprint Performance",
+    to: "/sprintperf",
+    icon: <CIcon icon="cil-chartPie" customClassName="nav-icon" />,
+    badge: {
+      color: "info",
+      text: "NEW",
+    },
+  },
+
+  {
+    _component: "CNavItem",
+    as: NavLink,
+    anchor: "Timesheet",
+    to: "/timesheet",
+    icon: <CIcon icon="cil-laptop" customClassName="nav-icon" />,
+    badge: {
+      color: "info",
+      text: "NEW",
+    },
+  },
+
   {
     _component: "CNavItem",
     as: NavLink,

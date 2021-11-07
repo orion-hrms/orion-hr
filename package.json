@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^1.2.7",
+    "@aws-sdk/client-cognito-identity-provider": "^3.39.0",
     "@coreui/chartjs": "3.0.0",
     "@coreui/coreui": "4.0.0",
     "@coreui/icons": "^2.0.1",
