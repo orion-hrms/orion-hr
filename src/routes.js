@@ -11,7 +11,7 @@ const Meetings = React.lazy(() => import("./views/pages/Meetings/Meetings"));
 const Tickets = React.lazy(() => import("./views/pages/Tickets/Tickets"));
 const Forum = React.lazy(() => import("./views/pages/Forum/Forum"));
 const Sprint = React.lazy(() => import("./views/pages/Sprint/Sprint"));
-const Survey = React.lazy(() => import("./views/pages/Survey/Survey"));
+const Survey = React.lazy(() => import("./views/pages/Survey/survey"));
 const AdminDashboard = React.lazy(() => import("./views/pages/AdminDashboard/AdminDashboard"));
 
 const Accordion = React.lazy(() =>

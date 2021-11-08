@@ -131,6 +131,8 @@ function Survey() {
   };
 
   return (
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc6cdG5cynv1RawkvITsNY8L_etFJ6QT--2ArFjL1EgB7DfZw/viewform?embedded=true" width="1200" height="2091" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    /**<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc6cdG5cynv1RawkvITsNY8L_etFJ6QT--2ArFjL1EgB7DfZw/viewform?embedded=true" width="1200" height="2091" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     <div className="Text">
       <div class="container-full-bg">
         <Jumbotron fluid>
@@ -172,7 +174,7 @@ function Survey() {
                   <br />
                   <p>
                     <b>
-                      The following questions will discuss your employement
+                      The following questions will discuss your employment
                       experiences within the company. Please answer as
                       truthfully as possible.
                     </b>
@@ -284,6 +286,7 @@ function Survey() {
         </Jumbotron>
       </div>
     </div>
+    **/
   );
 }
 
