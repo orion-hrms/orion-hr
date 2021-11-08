@@ -12,38 +12,19 @@
       "AmplifyAppId": "d2p22bkbbrgqdf"
     },
     "categories": {
+      "auth": {
+        "orionhrf05f9f30": {}
+      },
       "hosting": {
         "amplifyhosting": {
           "appId": "d2p22bkbbrgqdf",
           "type": "cicd"
         }
       },
-      "auth": {
-        "orionhr89662143": {},
-        "orionhrf05f9f30": {}
-      }
-    }
-  },
-  "ericdev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-orionhr-ericdev-191401-authRole",
-      "UnauthRoleArn": "arn:aws:iam::082565129730:role/amplify-orionhr-ericdev-191401-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::082565129730:role/amplify-orionhr-ericdev-191401-authRole",
-      "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-orionhr-ericdev-191401-deployment",
-      "UnauthRoleName": "amplify-orionhr-ericdev-191401-unauthRole",
-      "StackName": "amplify-orionhr-ericdev-191401",
-      "StackId": "arn:aws:cloudformation:us-east-1:082565129730:stack/amplify-orionhr-ericdev-191401/6c982570-19b8-11ec-9d72-0e7560343b15",
-      "AmplifyAppId": "d2p22bkbbrgqdf"
-    },
-    "categories": {
-      "auth": {
-        "orionhrf05f9f30": {}
-      },
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d2p22bkbbrgqdf",
-          "type": "cicd"
+      "function": {
+        "orionhrf05f9f30PostConfirmation": {
+          "deploymentBucketName": "amplify-orionhr-dev-192952-deployment",
+          "s3Key": "amplify-builds/orionhrf05f9f30PostConfirmation-464f666d51794773504a-build.zip"
         }
       }
     }

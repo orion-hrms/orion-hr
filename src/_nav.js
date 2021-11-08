@@ -38,24 +38,48 @@ var _nav = {
         text: "NEW",
       },
     },
-
     {
       _component: "CNavItem",
       as: NavLink,
       anchor: "Sprint",
       to: "/sprint",
-      icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
+      icon: <CIcon icon="cil-graph" customClassName="nav-icon" />,
       badge: {
         color: "info",
         text: "NEW",
       },
     },
+
+    {
+      _component: "CNavItem",
+      as: NavLink,
+      anchor: "Sprint Performance",
+      to: "/sprintperf",
+      icon: <CIcon icon="cil-chartPie" customClassName="nav-icon" />,
+      badge: {
+        color: "info",
+        text: "NEW",
+      },
+    },
+
+    {
+      _component: "CNavItem",
+      as: NavLink,
+      anchor: "Timesheet",
+      to: "/timesheet",
+      icon: <CIcon icon="cil-laptop" customClassName="nav-icon" />,
+      badge: {
+        color: "info",
+        text: "NEW",
+      },
+    },
+
     {
       _component: "CNavItem",
       as: NavLink,
       anchor: "Forum",
       to: "/forum",
-      icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
+      icon: <CIcon icon="cil-pen" customClassName="nav-icon" />,
       badge: {
         color: "info",
         text: "NEW",
@@ -66,7 +90,29 @@ var _nav = {
       as: NavLink,
       anchor: "Survey",
       to: "/survey",
-      icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
+      icon: <CIcon icon="cil-calendar-check" customClassName="nav-icon" />,
+      badge: {
+        color: "info",
+        text: "NEW",
+      },
+    },
+    // {
+    //   _component: "CNavItem",
+    //   as: NavLink,
+    //   anchor: " Email",
+    //   to: "/email",
+    //   icon: <CIcon icon="cil-envelope-closed" customClassName="nav-icon" />,
+    //   badge: {
+    //     color: "info",
+    //     text: "NEW",
+    //   },
+    // },
+    {
+      _component: "CNavItem",
+      as: NavLink,
+      anchor: " Data Insights",
+      to: "/datainsight",
+      icon: <CIcon icon="cilTags" customClassName="nav-icon" />,
       badge: {
         color: "info",
         text: "NEW",

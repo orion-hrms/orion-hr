@@ -1,6 +1,6 @@
-import { sygnet } from './sygnet'
-import { logo } from './logo'
-import { logoNegative } from './logo-negative'
+import { sygnet } from "./sygnet";
+import { logo } from "./logo";
+import { logoNegative } from "./logo-negative";
 
 import {
   cibSkype,
@@ -28,8 +28,8 @@ import {
   cibCcApplePay,
   cibCcAmex,
   cibGoogle,
-} from '@coreui/icons'
-import { cifUs, cifBr, cifIn, cifFr, cifEs, cifPl } from '@coreui/icons'
+} from "@coreui/icons";
+import { cifUs, cifBr, cifIn, cifFr, cifEs, cifPl } from "@coreui/icons";
 import {
   cilAlignCenter,
   cilAlignLeft,
@@ -111,6 +111,8 @@ import {
   cilShieldAlt,
   cilSpeech,
   cilSpeedometer,
+  cilCalendarCheck,
+  cilPen,
   cilSpreadsheet,
   cilStar,
   cilSun,
@@ -125,7 +127,7 @@ import {
   cilX,
   cilXCircle,
   cilWarning,
-} from '@coreui/icons'
+} from "@coreui/icons";
 
 export const icons = Object.assign(
   {},
@@ -176,6 +178,7 @@ export const icons = Object.assign(
     cilFullscreen,
     cilFullscreenExit,
     cilGraph,
+    cilCalendarCheck,
     cilHome,
     cilInbox,
     cilIndentDecrease,
@@ -215,6 +218,7 @@ export const icons = Object.assign(
     cilShieldAlt,
     cilSpeech,
     cilSpeedometer,
+    cilPen,
     cilSpreadsheet,
     cilStar,
     cilSun,
@@ -264,5 +268,5 @@ export const icons = Object.assign(
     cibCcApplePay,
     cibCcAmex,
     cibGoogle,
-  },
-)
+  }
+);
