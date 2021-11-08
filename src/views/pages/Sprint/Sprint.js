@@ -10,6 +10,10 @@ import {
   ListUsersCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
+import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+
 const Sprint = () => {
   const [userEmail, setUserEmail] = useState();
   const [users, setUsers] = useState([]);
@@ -32,6 +36,21 @@ const Sprint = () => {
   const [refreshJobs, setRefreshJobList] = useState("1");
 
   ///////////////////////////////////////////////////////////////////
+  const [pSprints, setPSprints] = useState([{}]);
+  const [pUsersJobs, setPUsersJobs] = useState([{}]);
+  const [pJobs, setPJobs] = useState([
+    {
+      id: "",
+      rJobName: "",
+      rOwnerEmail: "",
+      rJobStatus: "",
+      rStartDate: "",
+      rEndDate: "",
+      rEdit: "",
+    },
+  ]);
+
+  ///////////////////////////////////////////////////////////////////
   const client = new CognitoIdentityProviderClient({
     region: "us-east-1",
     credentials: {
@@ -43,6 +62,55 @@ const Sprint = () => {
   const command = new ListUsersCommand({
     UserPoolId: process.env.REACT_APP_UPI,
   });
+
+  const pagination = paginationFactory({
+    page: 1,
+    sizePerPage: 5,
+    lastPageText: ">>",
+    firstPageText: "<<",
+    nextPageText: ">",
+    prePageText: "<",
+    showTotal: true,
+    alwaysShowAllBtns: true,
+    onPageChange: function (page, sizePerPage) {
+      console.log("page", page);
+      console.log("sizePerPage", sizePerPage);
+    },
+    onSizePerPageChange: function (page, sizePerPage) {
+      console.log("page", page);
+      console.log("sizePerPage", sizePerPage);
+    },
+  });
+
+  const { SearchBar, ClearSearchButton } = Search;
+
+  const jColumns = [
+    { dataField: "rJobID", text: "Job ID", sort: false },
+    { dataField: "rJobName", text: "Job Name", sort: false },
+    { dataField: "rOwnerEmail", text: "Owner Email", sort: false },
+    { dataField: "rJobStatus", text: "Job Status", sort: false },
+    { dataField: "rStartDate", text: "Start Date", sort: false },
+    { dataField: "rEndDate", text: "End Date", sort: false },
+    { dataField: "rEdit", sort: false, attrs: { width: 50 } },
+  ];
+
+  const jColumns2 = [
+    { dataField: "id", text: "Job ID", sort: false },
+    { dataField: "rJobName", text: "Job Name", sort: false },
+    { dataField: "rOwnerEmail", text: "Owner Email", sort: false },
+    { dataField: "rJobStatus", text: "Job Status", sort: false },
+    { dataField: "rStartDate", text: "Start Date", sort: false },
+    { dataField: "rEndDate", text: "End Date", sort: false },
+    { dataField: "rEdit", sort: false, attrs: { width: 50 } },
+  ];
+
+  const sColumns = [
+    { dataField: "SprintID", text: "Sprint ID", sort: false },
+    { dataField: "SprintName", text: "Sprint Name", sort: false },
+    { dataField: "StartDate", text: "Start Date", sort: false },
+    { dataField: "EndDate", text: "End Date", sort: false },
+    { dataField: "rEdit", sort: false, attrs: { width: 50 } },
+  ];
 
   ///////////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -91,6 +159,90 @@ const Sprint = () => {
   useEffect(() => {
     getUsersList();
   }, []);
+
+  ///////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    if (userJobs !== undefined) {
+      let rows = [];
+      userJobs.map((job) => {
+        let row = {
+          rJobID: job.JobID,
+          rJobName: job.JobName,
+          rOwnerEmail: job.OwnerEmail,
+          rJobStatus: job.JobStatus,
+          rStartDate: job.StartDate,
+          rEndDate: job.EndDate,
+          rEdit: (
+            <Button variant="info" onClick={() => viewJobDetailsHandler(job)}>
+              View/Edit
+            </Button>
+          ),
+        };
+        rows.push(row);
+      });
+      setPUsersJobs(rows);
+    }
+  }, [userJobs]);
+
+  useEffect(() => {
+    setPJobs([
+      {
+        id: "",
+        rJobName: "",
+        rOwnerEmail: "",
+        rJobStatus: "",
+        rStartDate: "",
+        rEndDate: "",
+        rEdit: "",
+      },
+    ]);
+    if (jobs !== undefined) {
+      let rows = [];
+      jobs.map((job) => {
+        console.log("123123 " + job.JobID);
+        let row = {
+          id: job.JobID,
+          rJobName: job.JobName,
+          rOwnerEmail: job.OwnerEmail,
+          rJobStatus: job.JobStatus,
+          rStartDate: job.StartDate,
+          rEndDate: job.EndDate,
+          rEdit: (
+            <Button variant="info" onClick={() => viewJobDetailsHandler(job)}>
+              View/Edit
+            </Button>
+          ),
+        };
+        rows.push(row);
+      });
+      setPJobs(rows);
+    }
+  }, [jobs]);
+
+  ///////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    if (sprints !== undefined) {
+      let rows = [];
+      sprints.map((sprint) => {
+        let row = {
+          SprintID: sprint.SprintID,
+          SprintName: sprint.SprintName,
+          StartDate: sprint.StartDate,
+          EndDate: sprint.EndDate,
+          rEdit: (
+            <Button
+              variant="info"
+              onClick={() => viewSprintDetailsHandler(sprint)}
+            >
+              View/Edit
+            </Button>
+          ),
+        };
+        rows.push(row);
+      });
+      setPSprints(rows);
+    }
+  }, [sprints]);
 
   ///////////////////////////////////////////////////////////////////
   const getCurrentUser = async () => {
@@ -364,15 +516,6 @@ const Sprint = () => {
   const refreshSL = () => {
     setRefreshSprints(refreshSprints + 1);
   };
-
-  ///////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-  ///////////////////////////////////////////////////////////////////
   console.log("refreshJobs " + refreshJobs);
   console.log("Users: " + users);
 
@@ -403,70 +546,54 @@ const Sprint = () => {
               Refresh
             </Button>
           </h1>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Job ID</th>
-                <th>Job Name</th>
-                <th>Owner Email</th>
-                <th>Job Status</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {userJobs.map((job) => (
-                <tr>
-                  <td>{job.JobID}</td>
-                  <td>{job.JobName}</td>
-                  <td>{job.OwnerEmail}</td>
-                  <td>{job.JobStatus}</td>
-                  <td>{job.StartDate}</td>
-                  <td>{job.EndDate}</td>
-                  <td scope="col" align="center">
-                    <Button
-                      variant="info"
-                      onClick={() => viewJobDetailsHandler(job)}
-                    >
-                      View/Edit
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <div>
+            <ToolkitProvider
+              keyField="rJobID"
+              bootstrap4
+              data={pUsersJobs}
+              columns={jColumns}
+              search
+            >
+              {(props) => (
+                <div>
+                  <SearchBar {...props.searchProps} />
+                  <ClearSearchButton {...props.searchProps} />
+                  <hr />
+                  <BootstrapTable
+                    pagination={pagination}
+                    {...props.baseProps}
+                  />
+                </div>
+              )}
+            </ToolkitProvider>
+          </div>
           <h1>
-            Sprints List: <Button variant="outline-dark" onClick={refreshSL}>Refresh</Button>
+            Sprints List:{" "}
+            <Button variant="outline-dark" onClick={refreshSL}>
+              Refresh
+            </Button>
           </h1>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Sprint ID</th>
-                <th>Sprint Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {sprints.map((sprint) => (
-                <tr>
-                  <td>{sprint.SprintID}</td>
-                  <td>{sprint.SprintName}</td>
-                  <td>{sprint.StartDate}</td>
-                  <td>{sprint.EndDate}</td>
-                  <td scope="col" align="center">
-                    <Button
-                      variant="info"
-                      onClick={() => viewSprintDetailsHandler(sprint)}
-                    >
-                      View/Edit
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <div>
+            <ToolkitProvider
+              keyField="SprintID"
+              bootstrap4
+              data={pSprints}
+              columns={sColumns}
+              search
+            >
+              {(props) => (
+                <div>
+                  <SearchBar {...props.searchProps} />
+                  <ClearSearchButton {...props.searchProps} />
+                  <hr />
+                  <BootstrapTable
+                    pagination={pagination}
+                    {...props.baseProps}
+                  />
+                </div>
+              )}
+            </ToolkitProvider>
+          </div>
           <Button variant="primary" onClick={addSprintHandler}>
             Add Sprint
           </Button>
@@ -499,38 +626,13 @@ const Sprint = () => {
               Refresh
             </Button>
           </h1>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Job ID</th>
-                <th>Job Name</th>
-                <th>Owner Email</th>
-                <th>Job Status</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {jobs.map((job) => (
-                <tr>
-                  <td>{job.JobID}</td>
-                  <td>{job.JobName}</td>
-                  <td>{job.OwnerEmail}</td>
-                  <td>{job.JobStatus}</td>
-                  <td>{job.StartDate}</td>
-                  <td>{job.EndDate}</td>
-                  <td scope="col" align="center">
-                    <Button
-                      variant="info"
-                      onClick={() => viewJobDetailsHandler(job)}
-                    >
-                      View/Edit
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <BootstrapTable
+            bootstrap4
+            keyField="id"
+            data={pJobs}
+            columns={jColumns2}
+            pagination={pagination}
+          />
           <Button variant="info" onClick={viewSprintsHandler}>
             Back
           </Button>
