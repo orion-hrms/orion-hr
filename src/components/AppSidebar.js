@@ -1,27 +1,26 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import {
-  CCreateElement,
   CSidebar,
   CSidebarBrand,
   CSidebarNav,
   CSidebarToggler,
   CCreateNavItem,
-} from "@coreui/react";
+} from '@coreui/react'
 
-import CIcon from "@coreui/icons-react";
+import CIcon from '@coreui/icons-react'
 
-import SimpleBar from "simplebar-react";
-import "simplebar/dist/simplebar.min.css";
+import SimpleBar from 'simplebar-react'
+import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
-import { _nav } from "../_nav";
+import navigation from '../_nav'
 
 const AppSidebar = () => {
-  const dispatch = useDispatch();
-  const unfoldable = useSelector((state) => state.sidebarUnfoldable);
-  const sidebarShow = useSelector((state) => state.sidebarShow);
+  const dispatch = useDispatch()
+  const unfoldable = useSelector((state) => state.sidebarUnfoldable)
+  const sidebarShow = useSelector((state) => state.sidebarShow)
 
   return (
     <CSidebar
@@ -29,33 +28,25 @@ const AppSidebar = () => {
       selfHiding="md"
       unfoldable={unfoldable}
       show={sidebarShow}
-      onShow={() => console.log("show")}
+      onShow={() => console.log('show')}
       onHide={() => {
-        dispatch({ type: "set", sidebarShow: false });
+        dispatch({ type: 'set', sidebarShow: false })
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
         ORION HRMS
       </CSidebarBrand>
       <CSidebarNav>
-        <CCreateElement
-          items={_nav.items}
-          components={{
-            CSidebarNavDivider,
-            CSidebarNavDropdown,
-            CSidebarNavItem,
-            CSidebarNavTitle,
-          }}
-        />
+        <SimpleBar>
+          <CCreateNavItem items={navigation} />
+        </SimpleBar>
       </CSidebarNav>
       <CSidebarToggler
         className="d-none d-lg-flex"
-        onClick={() =>
-          dispatch({ type: "set", sidebarUnfoldable: !unfoldable })
-        }
+        onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
       />
     </CSidebar>
-  );
-};
+  )
+}
 
-export default React.memo(AppSidebar);
+export default React.memo(AppSidebar)

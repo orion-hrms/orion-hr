@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import {
   Button,
@@ -14,42 +14,53 @@ import {
 import { AmplifySignOut } from "@aws-amplify/ui-react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import {
-  listQuestion,
-  listSurvey,
+  listQuestions,
+  listSurveys,
   getQuestion,
   getSurvey,
-} from "../../../graphql/mutations";
+} from "../../../graphql/queries";
 
 import awsconfig from "../../../aws-exports";
 
 Amplify.configure(awsconfig);
 
-function AdminDashboard() {
-  const [response, setResponse] = useState("");
-  const [ques1, setQues1] = useState("");
-  const [ques2, setQues2] = useState("");
-  const [ques3, setQues3] = useState("");
-  const [ques4, setQues4] = useState("");
+function AdminDashboard(props) {
+  const [response, setResponse] = useState([]);
+  const [ques1, setQues1] = useState([]);
+  const [ques2, setQues2] = useState([]);
+  const [ques3, setQues3] = useState([]);
+  const [ques4, setQues4] = useState([]);
 
-  function listQ1(event) {
-    console.log(event.target.value);
-    setQues1(event.target.value);
-  }
+  useEffect(() => {
+    getallQuestions();
+  }, []);
 
-  function listQ2(event) {
-    console.log(event.target.value);
-    setQues1(event.target.value);
-  }
+  const getallQuestions = async () => {
+    console.log("inside questions");
+    const result = await API.graphql(graphqlOperation(listQuestions));
+    console.log("show question", result);
+  };
 
-  function listQ3(event) {
-    console.log(event.target.value);
-    setQues1(event.target.value);
-  }
+  const getQuestionList = async (QuestionList) => {
+    return Promise.all(
+      QuestionList.map(async (i) => {
+        return getOneQuestion(i);
+      })
+    );
+  };
 
-  function listQ4(event) {
-    console.log(event.target.value);
-    setQues1(event.target.value);
-  }
+  const getOneQuestion = async (singleQuestion) => {
+    console.log("getOneQuestion", singleQuestion);
+    return {
+      questionId: singleQuestion.id,
+      question1: singleQuestion.question1,
+      question2: singleQuestion.question2,
+      question3: singleQuestion.question3,
+      question4: singleQuestion.question4,
+      response: singleQuestion.response,
+      analysis: singleQuestion.analysis
+    };
+  };
 
   return (
     <div className="Text">
@@ -84,7 +95,7 @@ function AdminDashboard() {
                     <h1 className="display-3">Q1 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>3</h2>
+                    <h2>15</h2>
                   </CardText>
                 </Card>
               </Col>
@@ -115,7 +126,7 @@ function AdminDashboard() {
                     <h1 className="display-3">Q3 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>3,1</h2>
+                    <h2>3.4</h2>
                   </CardText>
                 </Card>
               </Col>
