@@ -154,7 +154,7 @@ function AdminDashboard(props) {
                     <h1 className="display-3">Sentiment Analytics</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>predominant=POSITIVE</h2>
+                    <h2>predominant: POSITIVE</h2>
                   </CardText>
                 </Card>
               </Col>
