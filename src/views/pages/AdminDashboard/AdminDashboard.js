@@ -26,29 +26,6 @@ import awsconfig from "../../../aws-exports";
 
 Amplify.configure(awsconfig);
 
-const state = {
-  labels: [
-    "Strongly Agree",
-    "Agree",
-    "Neutral",
-    "Disagree",
-    "Strongly Disagree",
-  ],
-  datasets: [
-    {
-      backgroundColor: ["#B21F00", "#C9DE00", "#2FDE00", "#00A6B4", "#6800B4"],
-      hoverBackgroundColor: [
-        "#501800",
-        "#4B5000",
-        "#175000",
-        "#003350",
-        "#35014F",
-      ],
-      data: [65, 59, 80, 81, 56],
-    },
-  ],
-};
-
 function AdminDashboard(props) {
   const [analysis, setAnalysis] = useState([]);
   const [question, setQuestion] = useState([]);
@@ -56,10 +33,121 @@ function AdminDashboard(props) {
   const [q2, setQ2] = useState([]);
   const [q3, setQ3] = useState([]);
   const [q4, setQ4] = useState([]);
+  const [q1Occu, setQ1Occu] = useState([]);
+  const [q2Occu, setQ2Occu] = useState([]);
+  const [q3Occu, setQ3Occu] = useState([]);
+  const [q4Occu, setQ4Occu] = useState([]);
+
+  var q1state = {
+    labels: Object.keys(q1Occu.reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {})),
+    datasets: [
+      {
+        backgroundColor: [
+          "#B21F00",
+          "#C9DE00",
+          "#2FDE00",
+          "#00A6B4",
+          "#6800B4",
+        ],
+        hoverBackgroundColor: [
+          "#501800",
+          "#4B5000",
+          "#175000",
+          "#003350",
+          "#35014F",
+        ],
+        data: Object.values(q1Occu.reduce(function (acc, curr) {
+          return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+        }, {})),
+      },
+    ],
+  };
+
+  var q2state = {
+    labels: Object.keys(q2Occu.reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {})),
+    datasets: [
+      {
+        backgroundColor: [
+          "#B21F00",
+          "#C9DE00",
+          "#2FDE00",
+          "#00A6B4",
+          "#6800B4",
+        ],
+        hoverBackgroundColor: [
+          "#501800",
+          "#4B5000",
+          "#175000",
+          "#003350",
+          "#35014F",
+        ],
+        data: Object.values(q2Occu.reduce(function (acc, curr) {
+          return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+        }, {})),
+      },
+    ],
+  };
+
+  var q3state = {
+    labels: Object.keys(q3Occu.reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {})),
+    datasets: [
+      {
+        backgroundColor: [
+          "#B21F00",
+          "#C9DE00",
+          "#2FDE00",
+          "#00A6B4",
+          "#6800B4",
+        ],
+        hoverBackgroundColor: [
+          "#501800",
+          "#4B5000",
+          "#175000",
+          "#003350",
+          "#35014F",
+        ],
+        data: Object.values(q3Occu.reduce(function (acc, curr) {
+          return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+        }, {})),
+      },
+    ],
+  };
+
+  var q4state = {
+    labels: Object.keys(q4Occu.reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {})),
+    datasets: [
+      {
+        backgroundColor: [
+          "#B21F00",
+          "#C9DE00",
+          "#2FDE00",
+          "#00A6B4",
+          "#6800B4",
+        ],
+        hoverBackgroundColor: [
+          "#501800",
+          "#4B5000",
+          "#175000",
+          "#003350",
+          "#35014F",
+        ],
+        data: Object.values(q4Occu.reduce(function (acc, curr) {
+          return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+        }, {})),
+      },
+    ],
+  };
 
   useEffect(() => {
     getallQuestions();
-    chartData();
   }, []);
 
   const getallQuestions = async () => {
@@ -67,21 +155,56 @@ function AdminDashboard(props) {
     let questionArray = await buildQuestionArray(
       result.data.listQuestions.items
     );
-    let q1Array = pollMapping(questionArray.map((item) => item.question1));
-    let q2Array = pollMapping(questionArray.map((item) => item.question2));
-    let q3Array = pollMapping(questionArray.map((item) => item.question3));
-    let q4Array = pollMapping(questionArray.map((item) => item.question4));
+    let q1Array = questionArray.map((item) => item.question1);
+    let q2Array = questionArray.map((item) => item.question2);
+    let q3Array = questionArray.map((item) => item.question3);
+    let q4Array = questionArray.map((item) => item.question4);
     setQuestion(questionArray);
-    setQ1(q1Array);
-    setQ2(q2Array);
-    setQ3(q3Array);
-    setQ4(q4Array);
+
+    setQ1Occu(questionArray.map((item) => item.question1));
+    setQ2Occu(questionArray.map((item) => item.question2));
+    setQ3Occu(questionArray.map((item) => item.question3));
+    setQ4Occu(questionArray.map((item) => item.question4));
+
+    let q1Map = pollMapping(q1Array);
+    let q2Map = pollMapping(q2Array);
+    let q3Map = pollMapping(q3Array);
+    let q4Map = pollMapping(q4Array);
+
+    setQ1(q1Map);
+    setQ2(q2Map);
+    setQ3(q3Map);
+    setQ4(q4Map);
     let analysis = sentimentMapping(questionArray.map((item) => item.analysis));
     setAnalysis(analysis);
   };
 
-  const chartData = async () => {
-    console.log("This is in chartData", q1);
+  function getQ1Occurances() {
+    let q1Occ = q1.reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {});
+    return q1Occ;
+  };
+
+  function getQ2Occurances() {
+    let q2Occ = q2.map((item) => item.question2).reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {});
+    return q2Occ;
+  }
+
+  function getQ3Occurances() {
+    let q3Occ = q3.map((item) => item.question3).reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {});
+    return q3Occ;
+  }
+
+  function getQ4Occurances() {
+    let q4Occ = q4.map((item) => item.question4).reduce(function (acc, curr) {
+      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    }, {});
+    return q4Occ;
   }
 
   function getMode(array) {
@@ -99,13 +222,6 @@ function AdminDashboard(props) {
       }
     }
     return maxEl;
-  }
-
-  function getOccurances(arr) {
-    var occurrences = {};
-    for (var i = 0, j = arr.length; i < j; i++) {
-      occurrences[arr[i]] = (occurrences[arr[i]] || 0) + 1;
-    }
   }
 
   function sentimentMapping(arr) {
@@ -279,7 +395,7 @@ function AdminDashboard(props) {
         <Row xs="4">
           <Col>
             <Doughnut
-              data={state}
+              data={q1state}
               options={{
                 title: {
                   display: true,
@@ -295,7 +411,7 @@ function AdminDashboard(props) {
           </Col>
           <Col>
             <Doughnut
-              data={state}
+              data={q2state}
               options={{
                 title: {
                   display: true,
@@ -303,7 +419,7 @@ function AdminDashboard(props) {
                   fontSize: 20,
                 },
                 legend: {
-                  display: true,
+                  display: false,
                   position: "right",
                 },
               }}
@@ -311,7 +427,7 @@ function AdminDashboard(props) {
           </Col>
           <Col>
             <Doughnut
-              data={state}
+              data={q3state}
               options={{
                 title: {
                   display: true,
@@ -327,7 +443,7 @@ function AdminDashboard(props) {
           </Col>
           <Col>
             <Doughnut
-              data={state}
+              data={q4state}
               options={{
                 title: {
                   display: true,
