@@ -11,6 +11,7 @@ import {
   CardBody,
   CardText,
 } from "reactstrap";
+import { Line, Pie, Doughnut } from "react-chartjs-2";
 import { AmplifySignOut } from "@aws-amplify/ui-react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import {
@@ -25,6 +26,29 @@ import awsconfig from "../../../aws-exports";
 
 Amplify.configure(awsconfig);
 
+const state = {
+  labels: [
+    "Strongly Agree",
+    "Agree",
+    "Neutral",
+    "Disagree",
+    "Strongly Disagree",
+  ],
+  datasets: [
+    {
+      backgroundColor: ["#B21F00", "#C9DE00", "#2FDE00", "#00A6B4", "#6800B4"],
+      hoverBackgroundColor: [
+        "#501800",
+        "#4B5000",
+        "#175000",
+        "#003350",
+        "#35014F",
+      ],
+      data: [65, 59, 80, 81, 56],
+    },
+  ],
+};
+
 function AdminDashboard(props) {
   const [analysis, setAnalysis] = useState([]);
   const [question, setQuestion] = useState([]);
@@ -35,6 +59,7 @@ function AdminDashboard(props) {
 
   useEffect(() => {
     getallQuestions();
+    chartData();
   }, []);
 
   const getallQuestions = async () => {
@@ -55,6 +80,10 @@ function AdminDashboard(props) {
     setAnalysis(analysis);
   };
 
+  const chartData = async () => {
+    console.log("This is in chartData", q1);
+  }
+
   function getMode(array) {
     if (array.length == 0) return null;
     var modeMap = {};
@@ -70,6 +99,13 @@ function AdminDashboard(props) {
       }
     }
     return maxEl;
+  }
+
+  function getOccurances(arr) {
+    var occurrences = {};
+    for (var i = 0, j = arr.length; i < j; i++) {
+      occurrences[arr[i]] = (occurrences[arr[i]] || 0) + 1;
+    }
   }
 
   function sentimentMapping(arr) {
@@ -96,7 +132,7 @@ function AdminDashboard(props) {
       } else if (arr[i] == "Disagree") {
         arr[i] = 2;
       } else arr[i] = 1;
-    } 
+    }
     return arr;
   }
 
@@ -157,7 +193,11 @@ function AdminDashboard(props) {
                     <h1 className="display-3">Q1 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>{q1.reduce((a, b) => a + b, 0) / question.length}</h2>
+                    <h2>
+                      {(
+                        q1.reduce((a, b) => a + b, 0) / question.length
+                      ).toPrecision(4)}
+                    </h2>
                   </CardText>
                 </Card>
               </Col>
@@ -171,7 +211,11 @@ function AdminDashboard(props) {
                     <h1 className="display-3">Q2 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>{q2.reduce((a, b) => a + b, 0) / question.length}</h2>
+                    <h2>
+                      {(
+                        q2.reduce((a, b) => a + b, 0) / question.length
+                      ).toPrecision(4)}
+                    </h2>
                   </CardText>
                 </Card>
               </Col>
@@ -188,7 +232,11 @@ function AdminDashboard(props) {
                     <h1 className="display-3">Q3 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>{q3.reduce((a, b) => a + b, 0) / question.length}</h2>
+                    <h2>
+                      {(
+                        q3.reduce((a, b) => a + b, 0) / question.length
+                      ).toPrecision(4)}
+                    </h2>
                   </CardText>
                 </Card>
               </Col>
@@ -202,7 +250,11 @@ function AdminDashboard(props) {
                     <h1 className="display-3">Q4 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>{q4.reduce((a, b) => a + b, 0) / question.length}</h2>
+                    <h2>
+                      {(
+                        q4.reduce((a, b) => a + b, 0) / question.length
+                      ).toPrecision(4)}
+                    </h2>
                   </CardText>
                 </Card>
               </Col>
@@ -223,6 +275,73 @@ function AdminDashboard(props) {
             </Row>
           </Container>
         </Jumbotron>
+        <br />
+        <Row xs="4">
+          <Col>
+            <Doughnut
+              data={state}
+              options={{
+                title: {
+                  display: true,
+                  text: "Question 1",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+            />
+          </Col>
+          <Col>
+            <Doughnut
+              data={state}
+              options={{
+                title: {
+                  display: true,
+                  text: "Question 2",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+            />
+          </Col>
+          <Col>
+            <Doughnut
+              data={state}
+              options={{
+                title: {
+                  display: true,
+                  text: "Question 3",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+            />
+          </Col>
+          <Col>
+            <Doughnut
+              data={state}
+              options={{
+                title: {
+                  display: true,
+                  text: "Question 4",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+            />
+          </Col>
+        </Row>
         <br />
         <AdminTable question={question} />
       </div>

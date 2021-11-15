@@ -1,9 +1,8 @@
 import React from "react";
-import { Table, Form, InputGroup } from "reactstrap";
+import { Table } from "reactstrap";
 
 export default function AdminTable(props) {
-  
-  console.log("props", props.question);
+
   return (
     <div className="container">
       <div className=" jumbotron">

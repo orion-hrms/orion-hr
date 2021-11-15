@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Form,
   FormGroup,
@@ -36,6 +36,7 @@ function Survey() {
   const [textToInterpret, setTextToInterpret] = useState(
     "Please enter your suggestions here"
   );
+  let history = useHistory();
 
   function interpretFromPredictions() {
     Predictions.interpret({
@@ -125,9 +126,7 @@ function Survey() {
     e.preventDefault();
     interpretFromPredictions();
     sendToDB();
-    alert(
-      "Thank you. We have received your application and will get back to you soon."
-    );
+    //history.push('./thankyou');
   };
 
   return (

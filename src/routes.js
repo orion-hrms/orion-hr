@@ -17,6 +17,7 @@ const AdminDashboard = React.lazy(() => import("./views/pages/AdminDashboard/Adm
 const SprintPerf = React.lazy(() => import("./views/pages/SprintPerf/SprintPerf"));
 const Timesheet = React.lazy(() => import("./views/pages/Timesheet/Timesheet"));
 const Email = React.lazy(() => import("./views/pages/Email/Email"));
+const thankyou = React.lazy(() => import("./views/pages/Survey/thankyou"));
 
 const DataInsight = React.lazy(() =>
   import("./views/pages/DataInsight/DataInsight")
