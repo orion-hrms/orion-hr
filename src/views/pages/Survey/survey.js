@@ -19,11 +19,10 @@ import { createQuestion, createSurvey } from "../../../graphql/mutations";
 import { AmazonAIPredictionsProvider } from "@aws-amplify/predictions";
 
 import awsconfig from "../../../aws-exports";
+Predictions.addPluggable(new AmazonAIPredictionsProvider());
 
 Amplify.configure(awsconfig);
-
 Amplify.register(Predictions);
-Predictions.addPluggable(new AmazonAIPredictionsProvider());
 
 function Survey() {
   const [name, setName] = useState("");
@@ -127,6 +126,9 @@ function Survey() {
     interpretFromPredictions();
     sendToDB();
     //history.push('./thankyou');
+    alert(
+      "Thank you. We have received your application and will get back to you soon."
+    );
   };
 
   return (
