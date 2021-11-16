@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Redirect } from "react-router-dom";
 import {
   Button,
@@ -11,7 +11,7 @@ import {
   CardBody,
   CardText,
 } from "reactstrap";
-import { Line, Pie, Doughnut } from "react-chartjs-2";
+import { CChartBar, CChartPie, CChart } from "@coreui/react-chartjs";
 import { AmplifySignOut } from "@aws-amplify/ui-react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import {
@@ -26,22 +26,26 @@ import awsconfig from "../../../aws-exports";
 
 Amplify.configure(awsconfig);
 
-function AdminDashboard(props) {
+function AdminDashboard({props}) {
   const [analysis, setAnalysis] = useState([]);
   const [question, setQuestion] = useState([]);
+
   const [q1, setQ1] = useState([]);
   const [q2, setQ2] = useState([]);
   const [q3, setQ3] = useState([]);
   const [q4, setQ4] = useState([]);
+
   const [q1Occu, setQ1Occu] = useState([]);
   const [q2Occu, setQ2Occu] = useState([]);
   const [q3Occu, setQ3Occu] = useState([]);
   const [q4Occu, setQ4Occu] = useState([]);
 
   var q1state = {
-    labels: Object.keys(q1Occu.reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {})),
+    labels: Object.keys(
+      q1Occu.reduce(function (acc, curr) {
+        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+      }, {})
+    ),
     datasets: [
       {
         backgroundColor: [
@@ -58,17 +62,21 @@ function AdminDashboard(props) {
           "#003350",
           "#35014F",
         ],
-        data: Object.values(q1Occu.reduce(function (acc, curr) {
-          return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-        }, {})),
+        data: Object.values(
+          q1Occu.reduce(function (acc, curr) {
+            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+          }, {})
+        ),
       },
     ],
   };
 
   var q2state = {
-    labels: Object.keys(q2Occu.reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {})),
+    labels: Object.keys(
+      q2Occu.reduce(function (acc, curr) {
+        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+      }, {})
+    ),
     datasets: [
       {
         backgroundColor: [
@@ -85,17 +93,21 @@ function AdminDashboard(props) {
           "#003350",
           "#35014F",
         ],
-        data: Object.values(q2Occu.reduce(function (acc, curr) {
-          return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-        }, {})),
+        data: Object.values(
+          q2Occu.reduce(function (acc, curr) {
+            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+          }, {})
+        ),
       },
     ],
   };
 
   var q3state = {
-    labels: Object.keys(q3Occu.reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {})),
+    labels: Object.keys(
+      q3Occu.reduce(function (acc, curr) {
+        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+      }, {})
+    ),
     datasets: [
       {
         backgroundColor: [
@@ -112,17 +124,21 @@ function AdminDashboard(props) {
           "#003350",
           "#35014F",
         ],
-        data: Object.values(q3Occu.reduce(function (acc, curr) {
-          return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-        }, {})),
+        data: Object.values(
+          q3Occu.reduce(function (acc, curr) {
+            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+          }, {})
+        ),
       },
     ],
   };
 
   var q4state = {
-    labels: Object.keys(q4Occu.reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {})),
+    labels: Object.keys(
+      q4Occu.reduce(function (acc, curr) {
+        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+      }, {})
+    ),
     datasets: [
       {
         backgroundColor: [
@@ -139,9 +155,11 @@ function AdminDashboard(props) {
           "#003350",
           "#35014F",
         ],
-        data: Object.values(q4Occu.reduce(function (acc, curr) {
-          return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-        }, {})),
+        data: Object.values(
+          q4Occu.reduce(function (acc, curr) {
+            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+          }, {})
+        ),
       },
     ],
   };
@@ -151,61 +169,76 @@ function AdminDashboard(props) {
   }, []);
 
   const getallQuestions = async () => {
-    const result = await API.graphql(graphqlOperation(listQuestions));
-    let questionArray = await buildQuestionArray(
-      result.data.listQuestions.items
-    );
-    let q1Array = questionArray.map((item) => item.question1);
-    let q2Array = questionArray.map((item) => item.question2);
-    let q3Array = questionArray.map((item) => item.question3);
-    let q4Array = questionArray.map((item) => item.question4);
-    setQuestion(questionArray);
-
-    setQ1Occu(questionArray.map((item) => item.question1));
-    setQ2Occu(questionArray.map((item) => item.question2));
-    setQ3Occu(questionArray.map((item) => item.question3));
-    setQ4Occu(questionArray.map((item) => item.question4));
-
-    let q1Map = pollMapping(q1Array);
-    let q2Map = pollMapping(q2Array);
-    let q3Map = pollMapping(q3Array);
-    let q4Map = pollMapping(q4Array);
-
-    setQ1(q1Map);
-    setQ2(q2Map);
-    setQ3(q3Map);
-    setQ4(q4Map);
-    let analysis = sentimentMapping(questionArray.map((item) => item.analysis));
-    setAnalysis(analysis);
+    try {
+      const result = await API.graphql(graphqlOperation(listQuestions));
+      let questionArray = await buildQuestionArray(
+        result.data.listQuestions.items
+      );
+      setQuestion(questionArray);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  function getQ1Occurances() {
-    let q1Occ = q1.reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
-    return q1Occ;
+  useEffect(() => {
+    getallQArray(question);
+  }, [question]);
+
+  const getallQArray = (arr) => {
+    try {
+      let q1Array = arr.map((item) => item.question1);
+      let q2Array = arr.map((item) => item.question2);
+      let q3Array = arr.map((item) => item.question3);
+      let q4Array = arr.map((item) => item.question4);
+
+      setQ1Occu(q1Array);
+      setQ2Occu(q2Array);
+      setQ3Occu(q3Array);
+      setQ4Occu(q4Array);
+
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  function getQ2Occurances() {
-    let q2Occ = q2.map((item) => item.question2).reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
-    return q2Occ;
-  }
+  useEffect(() => {
+    getallMapping(question);
+  }, [question]);
 
-  function getQ3Occurances() {
-    let q3Occ = q3.map((item) => item.question3).reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
-    return q3Occ;
-  }
+  const getallMapping = (arr) => {
+    try {
+      let q1Array = arr.map((item) => item.question1);
+      let q2Array = arr.map((item) => item.question2);
+      let q3Array = arr.map((item) => item.question3);
+      let q4Array = arr.map((item) => item.question4);
 
-  function getQ4Occurances() {
-    let q4Occ = q4.map((item) => item.question4).reduce(function (acc, curr) {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-    }, {});
-    return q4Occ;
-  }
+      let q1Map = pollMapping(q1Array).reduce((a, b) => a + b, 0);
+      let q2Map = pollMapping(q2Array).reduce((a, b) => a + b, 0);
+      let q3Map = pollMapping(q3Array).reduce((a, b) => a + b, 0);
+      let q4Map = pollMapping(q4Array).reduce((a, b) => a + b, 0);
+
+      setQ1(q1Map);
+      setQ2(q2Map);
+      setQ3(q3Map);
+      setQ4(q4Map);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getallAnalytics(question);
+  }, [question]);
+
+  const getallAnalytics = (arr) => {
+    try {
+      let analyzeSentiment = sentimentMapping(arr.map((item) => item.analysis));
+      let finalSentiment = getMode(analyzeSentiment);
+      setAnalysis(finalSentiment);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   function getMode(array) {
     if (array.length == 0) return null;
@@ -311,7 +344,7 @@ function AdminDashboard(props) {
                   <CardText>
                     <h2>
                       {(
-                        q1.reduce((a, b) => a + b, 0) / question.length
+                        q1 / question.length
                       ).toPrecision(4)}
                     </h2>
                   </CardText>
@@ -329,7 +362,7 @@ function AdminDashboard(props) {
                   <CardText>
                     <h2>
                       {(
-                        q2.reduce((a, b) => a + b, 0) / question.length
+                        q2 / question.length
                       ).toPrecision(4)}
                     </h2>
                   </CardText>
@@ -350,7 +383,7 @@ function AdminDashboard(props) {
                   <CardText>
                     <h2>
                       {(
-                        q3.reduce((a, b) => a + b, 0) / question.length
+                        q3 / question.length
                       ).toPrecision(4)}
                     </h2>
                   </CardText>
@@ -368,7 +401,7 @@ function AdminDashboard(props) {
                   <CardText>
                     <h2>
                       {(
-                        q4.reduce((a, b) => a + b, 0) / question.length
+                        q4 / question.length
                       ).toPrecision(4)}
                     </h2>
                   </CardText>
@@ -384,7 +417,7 @@ function AdminDashboard(props) {
                     <h1 className="display-3">Predominant Sentiment</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>{getMode(analysis)}</h2>
+                    <h2>{analysis}</h2>
                   </CardText>
                 </Card>
               </Col>
@@ -394,7 +427,8 @@ function AdminDashboard(props) {
         <br />
         <Row xs="4">
           <Col>
-            <Doughnut
+            <CChart
+              type="doughnut"
               data={q1state}
               options={{
                 title: {
@@ -410,7 +444,8 @@ function AdminDashboard(props) {
             />
           </Col>
           <Col>
-            <Doughnut
+            <CChart
+              type="doughnut"
               data={q2state}
               options={{
                 title: {
@@ -426,7 +461,8 @@ function AdminDashboard(props) {
             />
           </Col>
           <Col>
-            <Doughnut
+            <CChart
+              type="doughnut"
               data={q3state}
               options={{
                 title: {
@@ -442,7 +478,8 @@ function AdminDashboard(props) {
             />
           </Col>
           <Col>
-            <Doughnut
+            <CChart
+              type="doughnut"
               data={q4state}
               options={{
                 title: {
