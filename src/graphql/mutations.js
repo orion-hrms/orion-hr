@@ -13,7 +13,6 @@ export const createSurvey = /* GraphQL */ `
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -29,7 +28,6 @@ export const updateSurvey = /* GraphQL */ `
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -45,28 +43,6 @@ export const deleteSurvey = /* GraphQL */ `
       userId
       createdAt
       updatedAt
-      owner
-    }
-  }
-`;
-export const createQuestion = /* GraphQL */ `
-  mutation CreateQuestion(
-    $input: CreateQuestionInput!
-    $condition: ModelQuestionConditionInput
-  ) {
-    createQuestion(input: $input, condition: $condition) {
-      id
-      questionID
-      surveyID
-      question1
-      question2
-      question3
-      question4
-      response
-      analyze
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;
@@ -78,7 +54,6 @@ export const updateQuestion = /* GraphQL */ `
     updateQuestion(input: $input, condition: $condition) {
       id
       questionID
-      surveyID
       question1
       question2
       question3
@@ -99,7 +74,6 @@ export const deleteQuestion = /* GraphQL */ `
     deleteQuestion(input: $input, condition: $condition) {
       id
       questionID
-      surveyID
       question1
       question2
       question3
@@ -171,7 +145,6 @@ export const createUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -189,7 +162,6 @@ export const updateUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -207,7 +179,6 @@ export const deleteUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -451,6 +422,26 @@ export const deleteMeetings = /* GraphQL */ `
       ScheduledOn
       createdAt
       updatedAt
+    }
+  }
+`;
+export const createQuestion = /* GraphQL */ `
+  mutation CreateQuestion(
+    $input: CreateQuestionInput!
+    $condition: ModelQuestionConditionInput
+  ) {
+    createQuestion(input: $input, condition: $condition) {
+      id
+      questionID
+      question1
+      question2
+      question3
+      question4
+      response
+      analyze
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;

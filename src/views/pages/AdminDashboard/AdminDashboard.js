@@ -16,9 +16,6 @@ import { AmplifySignOut } from "@aws-amplify/ui-react";
 import Amplify, { API, graphqlOperation } from "aws-amplify";
 import {
   listQuestions,
-  listSurveys,
-  getQuestion,
-  getSurvey,
 } from "../../../graphql/queries";
 import AdminTable from "./AdminTable";
 
@@ -26,7 +23,7 @@ import awsconfig from "../../../aws-exports";
 
 Amplify.configure(awsconfig);
 
-function AdminDashboard({props}) {
+function AdminDashboard({ props }) {
   const [analysis, setAnalysis] = useState([]);
   const [question, setQuestion] = useState([]);
 
@@ -39,8 +36,8 @@ function AdminDashboard({props}) {
   const [q2Occu, setQ2Occu] = useState([]);
   const [q3Occu, setQ3Occu] = useState([]);
   const [q4Occu, setQ4Occu] = useState([]);
-
-  var q1state = {
+  
+  const q1state = {
     labels: Object.keys(
       q1Occu.reduce(function (acc, curr) {
         return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
@@ -71,7 +68,7 @@ function AdminDashboard({props}) {
     ],
   };
 
-  var q2state = {
+  const q2state = {
     labels: Object.keys(
       q2Occu.reduce(function (acc, curr) {
         return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
@@ -102,7 +99,7 @@ function AdminDashboard({props}) {
     ],
   };
 
-  var q3state = {
+  const q3state = {
     labels: Object.keys(
       q3Occu.reduce(function (acc, curr) {
         return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
@@ -133,7 +130,7 @@ function AdminDashboard({props}) {
     ],
   };
 
-  var q4state = {
+  const q4state = {
     labels: Object.keys(
       q4Occu.reduce(function (acc, curr) {
         return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
@@ -171,9 +168,11 @@ function AdminDashboard({props}) {
   const getallQuestions = async () => {
     try {
       const result = await API.graphql(graphqlOperation(listQuestions));
+      console.log("DynamoDB query", result)
       let questionArray = await buildQuestionArray(
         result.data.listQuestions.items
       );
+      console.log("All questions array", questionArray)
       setQuestion(questionArray);
     } catch (e) {
       console.log(e);
@@ -195,7 +194,6 @@ function AdminDashboard({props}) {
       setQ2Occu(q2Array);
       setQ3Occu(q3Array);
       setQ4Occu(q4Array);
-
     } catch (e) {
       console.log(e);
     }
@@ -299,7 +297,9 @@ function AdminDashboard({props}) {
 
   const getOneQuestion = async (singleQuestion) => {
     return {
-      questionId: singleQuestion.id,
+      id: singleQuestion.id,
+      questionId: singleQuestion.questionID,
+      surveyId: singleQuestion.surveyID,
       question1: singleQuestion.question1,
       question2: singleQuestion.question2,
       question3: singleQuestion.question3,
@@ -342,11 +342,7 @@ function AdminDashboard({props}) {
                     <h1 className="display-3">Q1 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>
-                      {(
-                        q1 / question.length
-                      ).toPrecision(4)}
-                    </h2>
+                    <h2>{(q1 / question.length).toPrecision(4)}</h2>
                   </CardText>
                 </Card>
               </Col>
@@ -360,11 +356,7 @@ function AdminDashboard({props}) {
                     <h1 className="display-3">Q2 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>
-                      {(
-                        q2 / question.length
-                      ).toPrecision(4)}
-                    </h2>
+                    <h2>{(q2 / question.length).toPrecision(4)}</h2>
                   </CardText>
                 </Card>
               </Col>
@@ -381,11 +373,7 @@ function AdminDashboard({props}) {
                     <h1 className="display-3">Q3 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>
-                      {(
-                        q3 / question.length
-                      ).toPrecision(4)}
-                    </h2>
+                    <h2>{(q3 / question.length).toPrecision(4)}</h2>
                   </CardText>
                 </Card>
               </Col>
@@ -399,11 +387,7 @@ function AdminDashboard({props}) {
                     <h1 className="display-3">Q4 Average Score</h1>
                   </CardTitle>
                   <CardText>
-                    <h2>
-                      {(
-                        q4 / question.length
-                      ).toPrecision(4)}
-                    </h2>
+                    <h2>{(q4 / question.length).toPrecision(4)}</h2>
                   </CardText>
                 </Card>
               </Col>

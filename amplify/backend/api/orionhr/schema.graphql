@@ -1,22 +1,5 @@
-type Survey @model @key(
-  name: "bySurveyID"
-  fields: ["surveyID"]
-  queryField: "bySurveyID") 
-  @auth(
-    rules: [
-      {
-        allow: groups
-        groups: ["Admin"]
-        queries: [get, list]
-        mutations: [create, update, delete]
-      }
-      {
-        allow: owner
-        mutations: [create]
-      }
-    ]
-  )
-  {
+type Survey @model
+{
   id: ID!
   surveyID: String!
   surveyName: String!
@@ -24,24 +7,30 @@ type Survey @model @key(
 }
 
 type Question @model
-  @auth(
+@auth(
     rules: [
       {
         allow: groups
-        groups: ["Admin"]
+        groups: ["Administrator"]
         queries: [get, list]
         mutations: [create, update, delete]
       }
       {
         allow: owner
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: public
+        queries: [get, list]
         mutations: [create]
+        provider: apiKey 
       }
     ]
   )
-  {
+{
   id: ID!
   questionID: String!
-  surveyID: String!
   question1: String!
   question2: String!
   question3: String!
@@ -56,23 +45,8 @@ type S3Object @model {
   key: String!
 }
 
-type user
-  @model
-  @auth(
-    rules: [
-      {
-        allow: groups
-        groups: ["Admin"]
-        queries: [get, list]
-        mutations: [create, update, delete]
-      }
-      {
-        allow: owner
-        queries: [get, list]
-        mutations: [create, update, delete]
-      }
-    ]
-  ) {
+type user @model
+{
   id: ID!
   UserId: String
   UserName: String

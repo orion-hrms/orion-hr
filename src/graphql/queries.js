@@ -10,7 +10,6 @@ export const getSurvey = /* GraphQL */ `
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -28,50 +27,6 @@ export const listSurveys = /* GraphQL */ `
         userId
         createdAt
         updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const getQuestion = /* GraphQL */ `
-  query GetQuestion($id: ID!) {
-    getQuestion(id: $id) {
-      id
-      questionID
-      surveyID
-      question1
-      question2
-      question3
-      question4
-      response
-      analyze
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listQuestions = /* GraphQL */ `
-  query ListQuestions(
-    $filter: ModelQuestionFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        questionID
-        surveyID
-        question1
-        question2
-        question3
-        question4
-        response
-        analyze
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }
@@ -119,7 +74,6 @@ export const getUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -139,7 +93,6 @@ export const listUsers = /* GraphQL */ `
         UserStatus
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -311,26 +264,39 @@ export const listMeetings = /* GraphQL */ `
     }
   }
 `;
-export const bySurveyID = /* GraphQL */ `
-  query BySurveyID(
-    $surveyID: String
-    $sortDirection: ModelSortDirection
-    $filter: ModelSurveyFilterInput
+export const getQuestion = /* GraphQL */ `
+  query GetQuestion($id: ID!) {
+    getQuestion(id: $id) {
+      id
+      questionID
+      question1
+      question2
+      question3
+      question4
+      response
+      analyze
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listQuestions = /* GraphQL */ `
+  query ListQuestions(
+    $filter: ModelQuestionFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    bySurveyID(
-      surveyID: $surveyID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        surveyID
-        surveyName
-        userId
+        questionID
+        question1
+        question2
+        question3
+        question4
+        response
+        analyze
         createdAt
         updatedAt
         owner
