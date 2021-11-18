@@ -17,6 +17,10 @@ import Amplify, { API, graphqlOperation } from "aws-amplify";
 import {
   listQuestions,
 } from "../../../graphql/queries";
+import {
+  CognitoIdentityProviderClient,
+  ListUsersCommand,
+} from "@aws-sdk/client-cognito-identity-provider";
 import AdminTable from "./AdminTable";
 
 import awsconfig from "../../../aws-exports";
@@ -24,6 +28,8 @@ import awsconfig from "../../../aws-exports";
 Amplify.configure(awsconfig);
 
 function AdminDashboard({ props }) {
+  const [admin, setAdmin] = useState(false);
+
   const [analysis, setAnalysis] = useState([]);
   const [question, setQuestion] = useState([]);
 
@@ -166,17 +172,13 @@ function AdminDashboard({ props }) {
   }, []);
 
   const getallQuestions = async () => {
-    try {
-      const result = await API.graphql(graphqlOperation(listQuestions));
-      console.log("DynamoDB query", result)
-      let questionArray = await buildQuestionArray(
-        result.data.listQuestions.items
-      );
-      console.log("All questions array", questionArray)
-      setQuestion(questionArray);
-    } catch (e) {
-      console.log(e);
-    }
+    const result = await API.graphql(graphqlOperation(listQuestions));
+    console.log("DynamoDB query", result)
+    let questionArray = await buildQuestionArray(
+      result.data.listQuestions.items
+    );
+    console.log("All questions array", questionArray)
+    setQuestion(questionArray);
   };
 
   useEffect(() => {
@@ -235,6 +237,17 @@ function AdminDashboard({ props }) {
       setAnalysis(finalSentiment);
     } catch (e) {
       console.log(e);
+    }
+  };
+
+  const getCurrentUser = async () => {
+    let user = await Auth.currentAuthenticatedUser();
+    let groups = user.signInUserSession.accessToken.payload["cognito:groups"];
+    console.log("user", user);
+    console.log("attributes", user.attributes);
+    console.log("groups", groups);
+    if (groups != undefined && groups.includes("Administrator")) {
+      setAdmin(true);
     }
   };
 

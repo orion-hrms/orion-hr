@@ -9,22 +9,23 @@
       "UnauthRoleName": "amplify-orionhr-dev-192952-unauthRole",
       "StackName": "amplify-orionhr-dev-192952",
       "StackId": "arn:aws:cloudformation:us-east-1:082565129730:stack/amplify-orionhr-dev-192952/d847fec0-fe39-11eb-b20b-0a99e59b1983",
-      "AmplifyAppId": "d2p22bkbbrgqdf"
+      "AmplifyAppId": "d2p22bkbbrgqdf",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-orionhr-dev-192952-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
         "orionhrf05f9f30": {}
       },
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d2p22bkbbrgqdf",
-          "type": "cicd"
-        }
-      },
       "function": {
         "orionhrf05f9f30PostConfirmation": {
           "deploymentBucketName": "amplify-orionhr-dev-192952-deployment",
           "s3Key": "amplify-builds/orionhrf05f9f30PostConfirmation-3231772b46736851376b-build.zip"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2p22bkbbrgqdf",
+          "type": "cicd"
         }
       }
     }
