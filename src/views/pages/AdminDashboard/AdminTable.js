@@ -30,6 +30,7 @@ export default function AdminTable(props) {
         <Table striped>
           <thead>
             <tr>
+              <th>Employee</th>
               <th>Q1</th>
               <th>Q2</th>
               <th>Q3</th>
@@ -41,6 +42,7 @@ export default function AdminTable(props) {
           <tbody>
             {props.question.map((question) => (
               <tr key={question.QuestionID}>
+                <td>{question.owner}</td>
                 <td>{question.question1}</td>
                 <td>{question.question2}</td>
                 <td>{question.question3}</td>

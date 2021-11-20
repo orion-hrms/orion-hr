@@ -32,6 +32,47 @@ export const listSurveys = /* GraphQL */ `
     }
   }
 `;
+export const getQuestion = /* GraphQL */ `
+  query GetQuestion($id: ID!) {
+    getQuestion(id: $id) {
+      id
+      questionID
+      question1
+      question2
+      question3
+      question4
+      response
+      analyze
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listQuestions = /* GraphQL */ `
+  query ListQuestions(
+    $filter: ModelQuestionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        questionID
+        question1
+        question2
+        question3
+        question4
+        response
+        analyze
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getS3Object = /* GraphQL */ `
   query GetS3Object($id: ID!) {
     getS3Object(id: $id) {
@@ -259,47 +300,6 @@ export const listMeetings = /* GraphQL */ `
         ScheduledOn
         createdAt
         updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getQuestion = /* GraphQL */ `
-  query GetQuestion($id: ID!) {
-    getQuestion(id: $id) {
-      id
-      questionID
-      question1
-      question2
-      question3
-      question4
-      response
-      analyze
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listQuestions = /* GraphQL */ `
-  query ListQuestions(
-    $filter: ModelQuestionFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        questionID
-        question1
-        question2
-        question3
-        question4
-        response
-        analyze
-        createdAt
-        updatedAt
-        owner
       }
       nextToken
     }

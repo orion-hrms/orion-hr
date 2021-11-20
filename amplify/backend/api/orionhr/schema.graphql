@@ -1,4 +1,19 @@
 type Survey @model
+@auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrator"]
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: owner
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+    ]
+  )
 {
   id: ID!
   surveyID: String!
@@ -19,12 +34,6 @@ type Question @model
         allow: owner
         queries: [get, list]
         mutations: [create, update, delete]
-      }
-      {
-        allow: public
-        queries: [get, list]
-        mutations: [create]
-        provider: apiKey 
       }
     ]
   )

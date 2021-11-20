@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import { CChartBar, CChartPie, CChart } from "@coreui/react-chartjs";
 import { AmplifySignOut } from "@aws-amplify/ui-react";
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import Amplify, { Auth, API, graphqlOperation } from "aws-amplify";
 import {
   listQuestions,
 } from "../../../graphql/queries";
@@ -179,7 +179,7 @@ function AdminDashboard({ props }) {
     );
     console.log("All questions array", questionArray)
     setQuestion(questionArray);
-  };
+};
 
   useEffect(() => {
     getallQArray(question);
@@ -239,6 +239,10 @@ function AdminDashboard({ props }) {
       console.log(e);
     }
   };
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   const getCurrentUser = async () => {
     let user = await Auth.currentAuthenticatedUser();
@@ -311,8 +315,8 @@ function AdminDashboard({ props }) {
   const getOneQuestion = async (singleQuestion) => {
     return {
       id: singleQuestion.id,
+      owner: singleQuestion.owner,
       questionId: singleQuestion.questionID,
-      surveyId: singleQuestion.surveyID,
       question1: singleQuestion.question1,
       question2: singleQuestion.question2,
       question3: singleQuestion.question3,

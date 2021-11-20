@@ -46,6 +46,26 @@ export const deleteSurvey = /* GraphQL */ `
     }
   }
 `;
+export const createQuestion = /* GraphQL */ `
+  mutation CreateQuestion(
+    $input: CreateQuestionInput!
+    $condition: ModelQuestionConditionInput
+  ) {
+    createQuestion(input: $input, condition: $condition) {
+      id
+      questionID
+      question1
+      question2
+      question3
+      question4
+      response
+      analyze
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const updateQuestion = /* GraphQL */ `
   mutation UpdateQuestion(
     $input: UpdateQuestionInput!
@@ -422,26 +442,6 @@ export const deleteMeetings = /* GraphQL */ `
       ScheduledOn
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createQuestion = /* GraphQL */ `
-  mutation CreateQuestion(
-    $input: CreateQuestionInput!
-    $condition: ModelQuestionConditionInput
-  ) {
-    createQuestion(input: $input, condition: $condition) {
-      id
-      questionID
-      question1
-      question2
-      question3
-      question4
-      response
-      analyze
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

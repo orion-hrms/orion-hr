@@ -100,7 +100,6 @@ function Survey() {
     };
 
     const qlist = {
-      surveyID: random,
       questionID: qID,
       question1: ques1,
       question2: ques2,
