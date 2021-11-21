@@ -329,7 +329,7 @@ function AdminDashboard({ props }) {
         <Jumbotron fluid>
           <br />
           <Container className="themed-container" fluid="md">
-            <h1 className="display-3">Administrator Dashboard</h1>
+            <h1 className="display-3">Survey Dashboard</h1>
             <br />
             <Row>
               <Col xs="6" sm="4">

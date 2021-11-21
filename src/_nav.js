@@ -122,7 +122,7 @@ const _nav = [
   {
     _component: "CNavItem",
     as: NavLink,
-    anchor: "AdminDashboard",
+    anchor: "Survey Dashboard",
     to: "/AdminDashboard",
     icon: <CIcon icon="cil-warning" customClassName="nav-icon" />,
     badge: {
