@@ -247,9 +247,6 @@ function AdminDashboard({ props }) {
   const getCurrentUser = async () => {
     let user = await Auth.currentAuthenticatedUser();
     let groups = user.signInUserSession.accessToken.payload["cognito:groups"];
-    console.log("user", user);
-    console.log("attributes", user.attributes);
-    console.log("groups", groups);
     if (groups != undefined && groups.includes("Administrator")) {
       setAdmin(true);
     }

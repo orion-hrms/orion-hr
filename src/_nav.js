@@ -108,17 +108,6 @@ const _nav = [
       text: "NEW",
     },
   },
-  // {
-  //   _component: "CNavItem",
-  //   as: NavLink,
-  //   anchor: " Email",
-  //   to: "/email",
-  //   icon: <CIcon icon="cil-envelope-closed" customClassName="nav-icon" />,
-  //   badge: {
-  //     color: "info",
-  //     text: "NEW",
-  //   },
-  // },
   {
     _component: "CNavItem",
     as: NavLink,
