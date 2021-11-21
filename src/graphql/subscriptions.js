@@ -2,50 +2,46 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateSurvey = /* GraphQL */ `
-  subscription OnCreateSurvey($owner: String!) {
-    onCreateSurvey(owner: $owner) {
+  subscription OnCreateSurvey {
+    onCreateSurvey {
       id
       surveyID
       surveyName
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onUpdateSurvey = /* GraphQL */ `
-  subscription OnUpdateSurvey($owner: String!) {
-    onUpdateSurvey(owner: $owner) {
+  subscription OnUpdateSurvey {
+    onUpdateSurvey {
       id
       surveyID
       surveyName
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onDeleteSurvey = /* GraphQL */ `
-  subscription OnDeleteSurvey($owner: String!) {
-    onDeleteSurvey(owner: $owner) {
+  subscription OnDeleteSurvey {
+    onDeleteSurvey {
       id
       surveyID
       surveyName
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
 export const onCreateQuestion = /* GraphQL */ `
-  subscription OnCreateQuestion($owner: String!) {
-    onCreateQuestion(owner: $owner) {
+  subscription OnCreateQuestion {
+    onCreateQuestion {
       id
       questionID
-      surveyID
       question1
       question2
       question3
@@ -59,11 +55,10 @@ export const onCreateQuestion = /* GraphQL */ `
   }
 `;
 export const onUpdateQuestion = /* GraphQL */ `
-  subscription OnUpdateQuestion($owner: String!) {
-    onUpdateQuestion(owner: $owner) {
+  subscription OnUpdateQuestion {
+    onUpdateQuestion {
       id
       questionID
-      surveyID
       question1
       question2
       question3
@@ -77,11 +72,10 @@ export const onUpdateQuestion = /* GraphQL */ `
   }
 `;
 export const onDeleteQuestion = /* GraphQL */ `
-  subscription OnDeleteQuestion($owner: String!) {
-    onDeleteQuestion(owner: $owner) {
+  subscription OnDeleteQuestion {
+    onDeleteQuestion {
       id
       questionID
-      surveyID
       question1
       question2
       question3
@@ -141,7 +135,6 @@ export const onCreateUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -156,7 +149,6 @@ export const onUpdateUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -171,7 +163,6 @@ export const onDeleteUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;

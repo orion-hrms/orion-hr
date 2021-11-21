@@ -12,16 +12,15 @@ const Chat = React.lazy(() => import("./views/pages/Chat/Chat"));
 const Tickets = React.lazy(() => import("./views/pages/Tickets/Tickets"));
 const Forum = React.lazy(() => import("./views/pages/Forum/Forum"));
 const Sprint = React.lazy(() => import("./views/pages/Sprint/Sprint"));
+const Survey = React.lazy(() => import("./views/pages/Survey/survey"));
+const AdminDashboard = React.lazy(() => import("./views/pages/AdminDashboard/AdminDashboard"));
 const SprintPerf = React.lazy(() => import("./views/pages/SprintPerf/SprintPerf"));
 const Timesheet = React.lazy(() => import("./views/pages/Timesheet/Timesheet"));
-const Survey = React.lazy(() => import("./views/pages/Survey/survey"));
 const Email = React.lazy(() => import("./views/pages/Email/Email"));
+const thankyou = React.lazy(() => import("./views/pages/Survey/thankyou"));
 
 const DataInsight = React.lazy(() =>
   import("./views/pages/DataInsight/DataInsight")
-);
-const AdminDashboard = React.lazy(() =>
-  import("./views/pages/AdminDashboard/AdminDashboard")
 );
 
 const Accordion = React.lazy(() =>

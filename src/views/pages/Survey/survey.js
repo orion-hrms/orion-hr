@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Form,
   FormGroup,
@@ -19,11 +19,10 @@ import { createQuestion, createSurvey } from "../../../graphql/mutations";
 import { AmazonAIPredictionsProvider } from "@aws-amplify/predictions";
 
 import awsconfig from "../../../aws-exports";
+Predictions.addPluggable(new AmazonAIPredictionsProvider());
 
 Amplify.configure(awsconfig);
-
 Amplify.register(Predictions);
-Predictions.addPluggable(new AmazonAIPredictionsProvider());
 
 function Survey() {
   const [name, setName] = useState("");
@@ -36,6 +35,7 @@ function Survey() {
   const [textToInterpret, setTextToInterpret] = useState(
     "Please enter your suggestions here"
   );
+  let history = useHistory();
 
   function interpretFromPredictions() {
     Predictions.interpret({
@@ -100,7 +100,6 @@ function Survey() {
     };
 
     const qlist = {
-      surveyID: random,
       questionID: qID,
       question1: ques1,
       question2: ques2,
@@ -125,12 +124,14 @@ function Survey() {
     e.preventDefault();
     interpretFromPredictions();
     sendToDB();
+    //history.push('./thankyou');
     alert(
       "Thank you. We have received your application and will get back to you soon."
     );
   };
 
   return (
+    /**<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc6cdG5cynv1RawkvITsNY8L_etFJ6QT--2ArFjL1EgB7DfZw/viewform?embedded=true" width="1200" height="2091" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>**/
     <div className="Text">
       <div class="container-full-bg">
         <Jumbotron fluid>
@@ -172,7 +173,7 @@ function Survey() {
                   <br />
                   <p>
                     <b>
-                      The following questions will discuss your employement
+                      The following questions will discuss your employment
                       experiences within the company. Please answer as
                       truthfully as possible.
                     </b>
