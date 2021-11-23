@@ -26,7 +26,7 @@ const AppHeaderDropdown = () => {
         <CDropdownHeader className="bg-light fw-semibold py-2">
           Account
         </CDropdownHeader>
-        <CDropdownItem href="#">
+        {/* <CDropdownItem href="#">
           <CIcon icon="cil-bell" className="me-2" />
           Updates
           <CBadge color="info" className="ms-2">
@@ -50,7 +50,7 @@ const AppHeaderDropdown = () => {
         <CDropdownItem href="#">
           <CIcon icon="cil-settings" className="me-2" />
           Settings
-        </CDropdownItem>
+        </CDropdownItem> */}
 
         <CDropdownDivider />
         <CDropdownItem href="#">
