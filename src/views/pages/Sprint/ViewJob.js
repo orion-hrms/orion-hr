@@ -3,15 +3,17 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import Modal from "./Modal";
 import uuid from "react-uuid";
 
-const AddJob = (props) => {
-  const jobID = uuid();
-  const [jobName, setJobName] = useState();
-  const [ownerEmail, setOwnerEmail] = useState("Unassigned");
-  const [jobDescription, setJobDescription] = useState("");
-  const [score, setScore] = useState();
-  const [jobStatus, setJobStatus] = useState("Defined");
-  const startDate = props.sprint.StartDate;
-  const endDate = props.sprint.EndDate;
+const ViewJob = (props) => {
+  const jobID = props.job.JobID;
+  const [jobName, setJobName] = useState(props.job.JobName);
+  const [ownerEmail, setOwnerEmail] = useState(props.job.OwnerEmail);
+  const [jobDescription, setJobDescription] = useState(
+    props.job.JobDescription
+  );
+  const [score, setScore] = useState(props.job.Score);
+  const [jobStatus, setJobStatus] = useState(props.job.JobStatus);
+  const startDate = props.job.StartDate;
+  const endDate = props.job.EndDate;
 
   const users = props.usersList;
 
@@ -34,7 +36,7 @@ const AddJob = (props) => {
             ":tu": jobStatus,
             ":sd": startDate,
             ":ed": endDate,
-            ":si": props.sprint.SprintID,
+            ":si": props.job.SprintID,
           },
           ReturnValues: "ALL_NEW",
         },
@@ -85,7 +87,9 @@ const AddJob = (props) => {
 
   return (
     <Modal onClose={props.onClose}>
-      <section style={{ height: "30rem", overflowY: "scroll", overflowX: "hidden" }}>
+      <section
+        style={{ height: "30rem", overflowY: "scroll", overflowX: "hidden" }}
+      >
         <Form onSubmit={addJobHandler}>
           <Row className="mb-3">
             <Form.Group as={Col}>
@@ -93,7 +97,7 @@ const AddJob = (props) => {
               <Form.Control
                 plaintext
                 readOnly
-                defaultValue={props.sprint.SprintID}
+                defaultValue={props.job.SprintID}
               />
             </Form.Group>
 
@@ -108,6 +112,7 @@ const AddJob = (props) => {
               required
               type="text"
               maxLength={50}
+              defaultValue={jobName}
               onChange={jobNameChangeHandler}
             />
           </Form.Group>
@@ -115,7 +120,7 @@ const AddJob = (props) => {
             <Form.Label>Job Description</Form.Label>
             <Form.Control
               as="textarea"
-              placeholder="Enter job description here"
+              defaultValue={jobDescription}
               style={{ height: "100px" }}
               onChange={jobDesChangeHandler}
             />
@@ -127,7 +132,7 @@ const AddJob = (props) => {
                 htmlSize="5"
                 required
                 onChange={emailChangeHandler}
-                defaultValue="Unassigned"
+                defaultValue={ownerEmail}
               >
                 <option>Unassigned</option>
                 {users.map((user) => (
@@ -151,7 +156,7 @@ const AddJob = (props) => {
             <Form.Group as={Col}>
               <Form.Label>Status</Form.Label>
               <Form.Select
-                defaultValue="Defined"
+                defaultValue={jobStatus}
                 onChange={statusChangeHandler}
               >
                 <option>Defined</option>
@@ -165,6 +170,7 @@ const AddJob = (props) => {
               <Form.Control
                 required
                 type="number"
+                defaultValue={score}
                 onChange={scoreChangeHandler}
               />
             </Form.Group>
@@ -180,4 +186,4 @@ const AddJob = (props) => {
   );
 };
 
-export default AddJob;
+export default ViewJob;

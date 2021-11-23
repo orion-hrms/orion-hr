@@ -1,0 +1,251 @@
+import React, { useEffect, useState } from "react";
+import { Table, Button, Form, Row, Col } from "react-bootstrap";
+import Modal from "./Modal";
+import uuid from "react-uuid";
+import moment from "moment";
+
+const SubmitTimesheet = (props) => {
+  const recordID = uuid();
+  const [month, setMonth] = useState();
+  const [year, setYear] = useState();
+  const [submitTable, setSubmitTable] = useState([]);
+  const [refreshTable, setRefreshTable] = useState(1);
+
+  const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const years = () => {
+    let y = [];
+    for (let i = 2020; i <= 2050; i++) {
+      y.push(i);
+    }
+    return y;
+  };
+
+  useEffect(() => {
+    if (month != undefined && year != undefined) {
+      let dates = new Date(year, month, 0).getDate();
+      console.log(dates);
+
+      let table = [];
+
+      for (let i = 1; i <= dates; i++) {
+        let record = {
+          date: new Date(year, month - 1, i).toLocaleDateString(),
+          startTime: "00:00",
+          endTime: "00:00",
+          total: 0,
+          type: "Leave",
+        };
+        table.push(record);
+      }
+
+      setSubmitTable(table);
+    }
+  }, [month, year]);
+
+  const submitHandler = () => {
+    const addTimesheetRequest = async () => {
+      const payload = {
+        operation: "update",
+        payload: {
+          TableName: "Timesheet",
+          Key: {
+            rd_id: recordID,
+          },
+          UpdateExpression:
+            "set rd_month =:sn, rd_year =:sj, emailID =:oe, rd_status =:sc, record_hr =:tu",
+          ExpressionAttributeValues: {
+            ":sn": month,
+            ":sj": year,
+            ":oe": props.userEmail,
+            ":sc": "Pending",
+            ":tu": submitTable,
+          },
+          ReturnValues: "ALL_NEW",
+        },
+      };
+
+      const response = await fetch(
+        "https://de0grvoj8l.execute-api.us-east-2.amazonaws.com/dev/hr-performance-tracking",
+        {
+          method: "POST",
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const responseData = await response.json();
+      console.log(responseData);
+    };
+
+    addTimesheetRequest().catch((error) => {
+      props.isSuccess(false);
+      console.log(error.message);
+    });
+    props.isSuccess(true);
+  };
+
+  const startTimeHandler = (event, index) => {
+    let table = submitTable;
+    table[index].startTime = event.target.value;
+    if (table[index].endTime != undefined) {
+      let st = table[index].startTime;
+      let et = table[index].endTime;
+      let hst = st.split(":")[0];
+      let mst = st.split(":")[1];
+      let het = et.split(":")[0];
+      let met = et.split(":")[1];
+      let dst = new Date(year, month, 1, hst, mst, 0, 0);
+      let det = new Date(year, month, 1, het, met, 0, 0);
+      let diff = Math.abs(det - dst);
+      let hours = Math.round(diff / 1000 / 60 / 60, 3);
+      table[index].total = hours;
+    }
+    setSubmitTable(table);
+    setRefreshTable(refreshTable + 1);
+  };
+
+  const endTimeHandler = (event, index) => {
+    let table = submitTable;
+    table[index].endTime = event.target.value;
+    if (table[index].startTime != undefined) {
+      let st = table[index].startTime;
+      let et = table[index].endTime;
+      let hst = st.split(":")[0];
+      let mst = st.split(":")[1];
+      let het = et.split(":")[0];
+      let met = et.split(":")[1];
+      let dst = new Date(year, month, 1, hst, mst, 0, 0);
+      let det = new Date(year, month, 1, het, met, 0, 0);
+      let diff = Math.abs(det - dst);
+      let hours = Math.round(diff / 1000 / 60 / 60, 3);
+      table[index].total = hours;
+    }
+    setSubmitTable(table);
+    setRefreshTable(refreshTable + 1);
+  };
+
+  const typeChangeHandler = (event, index) => {
+    let table = submitTable;
+    table[index].type = event.target.value;
+    setSubmitTable(table);
+  };
+
+  const yearHandler = (event) => {
+    setYear(event.target.value);
+  };
+
+  const monthHandler = (event) => {
+    setMonth(event.target.value);
+  };
+
+  console.log(submitTable);
+  return (
+    <Modal onClose={props.onClose}>
+      <section
+        style={{ height: "30rem", overflowY: "scroll", overflowX: "hidden" }}
+      >
+        <Form onSubmit={submitHandler}>
+          <Row className="mb-3">
+            <Form.Group as={Col}>
+              <Form.Label>Record ID</Form.Label>
+              <Form.Control plaintext readOnly defaultValue={recordID} />
+            </Form.Group>
+          </Row>
+          <Row className="mb-3">
+            <Form.Group as={Col}>
+              <Form.Label>Year</Form.Label>
+              <Form.Select
+                htmlSize="3"
+                defaultValue="No Select"
+                onChange={yearHandler}
+              >
+                <option>No Select</option>
+                {years().map((y) => (
+                  <option>{y}</option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label>Month</Form.Label>
+              <Form.Select
+                htmlSize="3"
+                defaultValue="No Select"
+                onChange={monthHandler}
+              >
+                <option>No Select</option>
+                {months.map((m) => (
+                  <option>{m}</option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+          </Row>
+          <Row className="mb-3">
+            <Form.Group as={Col}>
+              <Table striped bordered hover size="sm">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Total</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {submitTable.map((day) => (
+                    <tr>
+                      <td>{day.date}</td>
+                      <td>
+                        <Form.Control
+                          required
+                          type="time"
+                          defaultValue={day.startTime}
+                          onChange={(event) =>
+                            startTimeHandler(event, submitTable.indexOf(day))
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Form.Control
+                          required
+                          type="time"
+                          defaultValue={day.endTime}
+                          onChange={(event) =>
+                            endTimeHandler(event, submitTable.indexOf(day))
+                          }
+                        />
+                      </td>
+                      <td>{day.total}</td>
+                      <td>
+                        <Form.Select
+                          defaultValue={day.type}
+                          onChange={(event) =>
+                            typeChangeHandler(event, submitTable.indexOf(day))
+                          }
+                        >
+                          <option>Regular</option>
+                          <option>PTO</option>
+                          <option>Leave</option>
+                        </Form.Select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Form.Group>
+          </Row>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+          &nbsp;&nbsp;&nbsp;
+          <Button onClick={props.onClose}>Cancel</Button>
+        </Form>
+      </section>
+    </Modal>
+  );
+};
+
+export default SubmitTimesheet;

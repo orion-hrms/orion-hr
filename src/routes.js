@@ -13,13 +13,14 @@ const Tickets = React.lazy(() => import("./views/pages/Tickets/Tickets"));
 const Forum = React.lazy(() => import("./views/pages/Forum/Forum"));
 const Sprint = React.lazy(() => import("./views/pages/Sprint/Sprint"));
 const Survey = React.lazy(() => import("./views/pages/Survey/survey"));
+const AdminDashboard = React.lazy(() => import("./views/pages/AdminDashboard/AdminDashboard"));
+const SprintPerf = React.lazy(() => import("./views/pages/SprintPerf/SprintPerf"));
+const Timesheet = React.lazy(() => import("./views/pages/Timesheet/Timesheet"));
 const Email = React.lazy(() => import("./views/pages/Email/Email"));
+const thankyou = React.lazy(() => import("./views/pages/Survey/thankyou"));
 
 const DataInsight = React.lazy(() =>
   import("./views/pages/DataInsight/DataInsight")
-);
-const AdminDashboard = React.lazy(() =>
-  import("./views/pages/AdminDashboard/AdminDashboard")
 );
 
 const Accordion = React.lazy(() =>
@@ -140,6 +141,8 @@ const routes = [
   },
   { path: "/theme/typography", name: "Typography", component: Typography },
   { path: "/sprint", name: "Sprint", component: Sprint },
+  { path: "/sprintperf", name: "SprintPerf", component: SprintPerf },
+  { path: "/timesheet", name: "Timesheet", component: Timesheet },
   { path: "/forum", name: "Forum", component: Forum },
   { path: "/base", name: "Base", component: Cards, exact: true },
   { path: "/email", name: "Email", component: Email },

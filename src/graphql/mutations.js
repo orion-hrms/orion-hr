@@ -13,7 +13,6 @@ export const createSurvey = /* GraphQL */ `
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -29,7 +28,6 @@ export const updateSurvey = /* GraphQL */ `
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -45,7 +43,6 @@ export const deleteSurvey = /* GraphQL */ `
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -57,7 +54,6 @@ export const createQuestion = /* GraphQL */ `
     createQuestion(input: $input, condition: $condition) {
       id
       questionID
-      surveyID
       question1
       question2
       question3
@@ -78,7 +74,6 @@ export const updateQuestion = /* GraphQL */ `
     updateQuestion(input: $input, condition: $condition) {
       id
       questionID
-      surveyID
       question1
       question2
       question3
@@ -99,7 +94,6 @@ export const deleteQuestion = /* GraphQL */ `
     deleteQuestion(input: $input, condition: $condition) {
       id
       questionID
-      surveyID
       question1
       question2
       question3
@@ -171,7 +165,6 @@ export const createUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -189,7 +182,6 @@ export const updateUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -207,7 +199,6 @@ export const deleteUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;

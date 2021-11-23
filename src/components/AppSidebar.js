@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
+import { Auth } from "aws-amplify";
 
 import {
   CSidebar,
@@ -21,6 +23,22 @@ const AppSidebar = () => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow)
+  
+  const [admin, setAdmin] = useState(false);
+
+  useEffect(() => {
+    console.log("In appSidebar")
+    getCurrentUser();
+  }, []);
+
+  const getCurrentUser = async () => {
+    let user = await Auth.currentAuthenticatedUser();
+    let groups = user.signInUserSession.accessToken.payload["cognito:groups"];
+    if (groups != undefined && groups.includes("Administrator")) {
+      setAdmin(true);
+    }
+    console.log("Is this Admin?", admin)
+  };
 
   return (
     <CSidebar
