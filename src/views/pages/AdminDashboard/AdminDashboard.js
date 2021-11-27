@@ -43,126 +43,78 @@ function AdminDashboard({ props }) {
   const [q3Occu, setQ3Occu] = useState([]);
   const [q4Occu, setQ4Occu] = useState([]);
   
+  const colorMap = {
+    'Strongly Disagree': '#B21F00',
+    'Disagree': '#C9DE00',
+    'Neutral': '#2FDE00',
+    'Agree': '#00A6B4',
+    'Strongly Agree': '#6800B4'
+  };
+
+  const hoverColorMap = {
+    'Strongly Disagree': '#501800',
+    'Disagree': '#4B5000',
+    'Neutral': '#175000',
+    'Agree': '#003350',
+    'Strongly Agree': '#35014F  '
+  };
+
+  const q1Labels =  q1Occu.reduce(function (acc, curr) {
+    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+  }, {})
+
   const q1state = {
-    labels: Object.keys(
-      q1Occu.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      }, {})
-    ),
+    labels: Object.keys(q1Labels),
     datasets: [
       {
-        backgroundColor: [
-          "#B21F00",
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#501800",
-          "#4B5000",
-          "#175000",
-          "#003350",
-          "#35014F",
-        ],
-        data: Object.values(
-          q1Occu.reduce(function (acc, curr) {
-            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-          }, {})
-        ),
+        backgroundColor: Object.keys(q1Labels).map(l => colorMap[l]),
+        hoverBackgroundColor: Object.keys(q1Labels).map(l => hoverColorMap[l]),
+        data: Object.values(q1Labels),
       },
     ],
   };
+
+  const q2Labels =  q2Occu.reduce(function (acc, curr) {
+    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+  }, {})
 
   const q2state = {
-    labels: Object.keys(
-      q2Occu.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      }, {})
-    ),
+    labels: Object.keys(q2Labels),
     datasets: [
       {
-        backgroundColor: [
-          "#B21F00",
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#501800",
-          "#4B5000",
-          "#175000",
-          "#003350",
-          "#35014F",
-        ],
-        data: Object.values(
-          q2Occu.reduce(function (acc, curr) {
-            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-          }, {})
-        ),
+        backgroundColor: Object.keys(q2Labels).map(l => colorMap[l]),
+        hoverBackgroundColor: Object.keys(q2Labels).map(l => hoverColorMap[l]),
+        data: Object.values(q2Labels),
       },
     ],
   };
+
+  const q3Labels =  q3Occu.reduce(function (acc, curr) {
+    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+  }, {})
 
   const q3state = {
-    labels: Object.keys(
-      q3Occu.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      }, {})
-    ),
+    labels: Object.keys(q3Labels),
     datasets: [
       {
-        backgroundColor: [
-          "#B21F00",
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#501800",
-          "#4B5000",
-          "#175000",
-          "#003350",
-          "#35014F",
-        ],
-        data: Object.values(
-          q3Occu.reduce(function (acc, curr) {
-            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-          }, {})
-        ),
+        backgroundColor: Object.keys(q3Labels).map(l => colorMap[l]),
+        hoverBackgroundColor: Object.keys(q3Labels).map(l => hoverColorMap[l]),
+        data: Object.values(q3Labels),
       },
     ],
   };
 
+  const q4Labels =  q4Occu.reduce(function (acc, curr) {
+    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+  }, {})
+
   const q4state = {
-    labels: Object.keys(
-      q4Occu.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      }, {})
-    ),
+    labels: Object.keys(q4Labels),
     datasets: [
       {
-        backgroundColor: [
-          "#B21F00",
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#501800",
-          "#4B5000",
-          "#175000",
-          "#003350",
-          "#35014F",
-        ],
-        data: Object.values(
-          q4Occu.reduce(function (acc, curr) {
-            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-          }, {})
-        ),
+        backgroundColor: Object.keys(q4Labels).map(l => colorMap[l]),
+        hoverBackgroundColor: Object.keys(q4Labels).map(l => hoverColorMap[l]),
+        data: Object.values(q4Labels),
       },
     ],
   };
