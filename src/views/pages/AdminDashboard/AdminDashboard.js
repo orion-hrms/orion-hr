@@ -77,7 +77,11 @@ function AdminDashboard({ props }) {
       },
       title: {
         display: true,
-        text: "Question 1"
+        text: "Question 1",
+        color: "#333",
+        font: {
+          size: 16
+        }
       }
     }
   }
@@ -104,7 +108,11 @@ function AdminDashboard({ props }) {
       },
       title: {
         display: true,
-        text: "Question 2"
+        text: "Question 2",
+        color: "#333",
+        font: {
+          size: 16
+        }
       }
     }
   }
@@ -131,7 +139,11 @@ function AdminDashboard({ props }) {
       },
       title: {
         display: true,
-        text: "Question 3"
+        text: "Question 3",
+        color: "#333",
+        font: {
+          size: 16
+        }
       }
     }
   }
@@ -158,7 +170,11 @@ function AdminDashboard({ props }) {
       },
       title: {
         display: true,
-        text: "Question 4"
+        text: "Question 4",
+        color: "#333",
+        font: {
+          size: 16
+        }
       }
     }
   }
