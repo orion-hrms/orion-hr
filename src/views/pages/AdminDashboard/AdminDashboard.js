@@ -11,16 +11,11 @@ import {
   CardBody,
   CardText,
 } from "reactstrap";
-import { CChartBar, CChartPie, CChart } from "@coreui/react-chartjs";
-import { AmplifySignOut } from "@aws-amplify/ui-react";
+import {CChartDoughnut } from "@coreui/react-chartjs";
 import Amplify, { Auth, API, graphqlOperation } from "aws-amplify";
 import {
   listQuestions,
 } from "../../../graphql/queries";
-import {
-  CognitoIdentityProviderClient,
-  ListUsersCommand,
-} from "@aws-sdk/client-cognito-identity-provider";
 import AdminTable from "./AdminTable";
 
 import awsconfig from "../../../aws-exports";
@@ -59,6 +54,7 @@ function AdminDashboard({ props }) {
     'Strongly Agree': '#35014F  '
   };
 
+
   const q1Labels =  q1Occu.reduce(function (acc, curr) {
     return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
   }, {})
@@ -73,6 +69,18 @@ function AdminDashboard({ props }) {
       },
     ],
   };
+
+  const q1options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Question 1"
+      }
+    }
+  }
 
   const q2Labels =  q2Occu.reduce(function (acc, curr) {
     return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
@@ -89,6 +97,18 @@ function AdminDashboard({ props }) {
     ],
   };
 
+  const q2options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Question 2"
+      }
+    }
+  }
+
   const q3Labels =  q3Occu.reduce(function (acc, curr) {
     return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
   }, {})
@@ -104,6 +124,18 @@ function AdminDashboard({ props }) {
     ],
   };
 
+  const q3options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Question 3"
+      }
+    }
+  }
+
   const q4Labels =  q4Occu.reduce(function (acc, curr) {
     return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
   }, {})
@@ -118,6 +150,18 @@ function AdminDashboard({ props }) {
       },
     ],
   };
+
+  const q4options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Question 4"
+      }
+    }
+  }
 
   useEffect(() => {
     getallQuestions();
@@ -377,71 +421,27 @@ function AdminDashboard({ props }) {
         <br />
         <Row xs="4">
           <Col>
-            <CChart
-              type="doughnut"
+            <CChartDoughnut
               data={q1state}
-              options={{
-                title: {
-                  display: true,
-                  text: "Question 1",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: "right",
-                },
-              }}
+              options={q1options}
             />
           </Col>
           <Col>
-            <CChart
-              type="doughnut"
+            <CChartDoughnut
               data={q2state}
-              options={{
-                title: {
-                  display: true,
-                  text: "Question 2",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: false,
-                  position: "right",
-                },
-              }}
+              options={q2options}
             />
           </Col>
           <Col>
-            <CChart
-              type="doughnut"
+            <CChartDoughnut
               data={q3state}
-              options={{
-                title: {
-                  display: true,
-                  text: "Question 3",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: "right",
-                },
-              }}
+              options={q3options}
             />
           </Col>
           <Col>
-            <CChart
-              type="doughnut"
+            <CChartDoughnut
               data={q4state}
-              options={{
-                title: {
-                  display: true,
-                  text: "Question 4",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: "right",
-                },
-              }}
+              options={q4options}
             />
           </Col>
         </Row>

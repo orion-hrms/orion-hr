@@ -136,7 +136,7 @@ const routes = [
   { path: "/survey", name: "Survey", component: Survey },
   {
     path: "/AdminDashboard",
-    name: "AdminDashboard",
+    name: "Survey Dashboard",
     component: AdminDashboard,
   },
   { path: "/theme/typography", name: "Typography", component: Typography },
