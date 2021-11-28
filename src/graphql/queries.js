@@ -10,7 +10,6 @@ export const getSurvey = /* GraphQL */ `
       userId
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -28,7 +27,6 @@ export const listSurveys = /* GraphQL */ `
         userId
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }
@@ -39,7 +37,6 @@ export const getQuestion = /* GraphQL */ `
     getQuestion(id: $id) {
       id
       questionID
-      surveyID
       question1
       question2
       question3
@@ -62,7 +59,6 @@ export const listQuestions = /* GraphQL */ `
       items {
         id
         questionID
-        surveyID
         question1
         question2
         question3
@@ -119,7 +115,6 @@ export const getUser = /* GraphQL */ `
       UserStatus
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -139,7 +134,6 @@ export const listUsers = /* GraphQL */ `
         UserStatus
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

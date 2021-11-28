@@ -1,14 +1,45 @@
-type Survey @model @auth(rules: [{ allow: owner }]) {
+type Survey @model
+@auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrator"]
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: owner
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+    ]
+  )
+{
   id: ID!
-  surveyID: String
+  surveyID: String!
   surveyName: String!
   userId: String
 }
 
-type Question @model @auth(rules: [{ allow: owner }]) {
+type Question @model
+@auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Administrator"]
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+      {
+        allow: owner
+        queries: [get, list]
+        mutations: [create, update, delete]
+      }
+    ]
+  )
+{
   id: ID!
-  questionID: ID!
-  surveyID: String
+  questionID: String!
   question1: String!
   question2: String!
   question3: String!
@@ -23,23 +54,8 @@ type S3Object @model {
   key: String!
 }
 
-type user
-  @model
-  @auth(
-    rules: [
-      {
-        allow: groups
-        groups: ["Admin"]
-        queries: [get, list]
-        mutations: [create, update, delete]
-      }
-      {
-        allow: owner
-        queries: [get, list]
-        mutations: [create, update, delete]
-      }
-    ]
-  ) {
+type user @model
+{
   id: ID!
   UserId: String
   UserName: String

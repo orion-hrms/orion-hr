@@ -74,7 +74,7 @@ function EmployeeTable(emptable) {
               <CTableHeaderCell className="text-center">
                 Pay Grade
               </CTableHeaderCell>
-              <CTableHeaderCell>Activity</CTableHeaderCell>
+              {/* <CTableHeaderCell>Activity</CTableHeaderCell> */}
             </CTableRow>
           </CTableHead>
           <CTableBody>
@@ -127,10 +127,10 @@ function EmployeeTable(emptable) {
                     <CIcon size="xl" name="cib-cc-mastercard" />
                     <p>{obj.payGrade}</p>
                   </CTableDataCell>
-                  <CTableDataCell>
+                  {/* <CTableDataCell>
                     <div className="small text-medium-emphasis">Last login</div>
                     <strong>10 sec ago</strong>
-                  </CTableDataCell>
+                  </CTableDataCell> */}
                 </CTableRow>
               </>
             ))}

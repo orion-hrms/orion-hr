@@ -1,0 +1,39 @@
+.header {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  padding: 0 10%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.logo {
+  font-size: 2rem;
+  color: black;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  margin-left: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color:black;
+}
+
+.nav a:hover,
+.nav a:active,
+.nav a.active {
+  color: grey;
+}
