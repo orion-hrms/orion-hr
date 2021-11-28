@@ -59,7 +59,7 @@ class MANGE extends Component {
             let invoices = 
             allinvoices.map( invoice => 
                 <tr key={invoice.id}>
-                    <td>{invoice.Title}</td>
+                    <td>{invoice.Tittle}</td>
                     <td>{invoice.Allow_Comment}</td>
                     <td>{invoice.Allow_Share}</td>
                     <td>{invoice.Author_Name}</td>
