@@ -37,6 +37,8 @@ const showDetailedAnalysis = () => {
   );
 };
 
+const navigateToDataInsight = () => {};
+
 const WidgetsDropdown = () => {
   // const result = API.graphql(graphqlOperation(listEmployeedetails));
 
@@ -50,6 +52,7 @@ const WidgetsDropdown = () => {
   }, [inidata]);
 
   const navigateTo = () => history.push("/employees");
+  const navigateToDataInsight = () => history.push("/datainsight");
   const getAllEmpDataToState = async () => {
     const result = await API.graphql(graphqlOperation(listEmployeedetails));
     console.log("inside before build 1", result);
@@ -65,7 +68,7 @@ const WidgetsDropdown = () => {
         <CWidgetDropdown
           className="mb-4"
           color="primary"
-          value={empdata}
+          // value={empdata}
           change={<>{/* (-12.4% <CIcon icon="cil-arrow-bottom" />) */}</>}
           title="Users"
           to="/employees"
@@ -161,120 +164,7 @@ const WidgetsDropdown = () => {
           }
         />
       </CCol>
-      {/* <CCol sm="6" lg="3">
-        <CWidgetDropdown
-          className="mb-4"
-          color="info"
-          value="40+"
-          change={
-            <>
-              (40.9% <CIcon icon="cil-arrow-top" />)
-            </>
-          }
-          title="Tickets"
-          action={
-            <CDropdown alignment="end">
-              <CDropdownToggle
-                color="transparent"
-                caret={false}
-                className="p-0"
-              >
-                <CIcon
-                  icon="cil-options"
-                  className="text-high-emphasis-inverse"
-                />
-              </CDropdownToggle>
-              <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
-                <CDropdownItem>Another action</CDropdownItem>
-                <CDropdownItem>Something else here...</CDropdownItem>
-                <CDropdownItem disabled>Disabled action</CDropdownItem>
-              </CDropdownMenu>
-            </CDropdown>
-          }
-          chart={
-            <CChartLine
-              className="mt-3 mx-3"
-              style={{ height: "70px" }}
-              data={{
-                labels: [
-                  "January",
-                  "February",
-                  "March",
-                  "April",
-                  "May",
-                  "June",
-                  "July",
-                ],
-                datasets: [
-                  {
-                    label: "My First dataset",
-                    backgroundColor: "transparent",
-                    borderColor: "rgba(255,255,255,.55)",
-                    pointBackgroundColor: getStyle("--cui-info"),
-                    data: [1, 18, 9, 17, 34, 22, 11],
-                  },
-                ],
-              }}
-              getDatasetAtEvent={(dataset, event) => {
-                console.log("init1");
-                console.log(dataset);
-                console.log(event);
-              }}
-              getElementAtEvent={(element, event) => {
-                console.log("init2");
-                console.log(element);
-                console.log(event);
-              }}
-              getElementsAtEvent={(element, event) => {
-                console.log("init3");
-                console.log(element);
-                console.log(event);
-              }}
-              options={{
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                },
-                maintainAspectRatio: false,
-                scales: {
-                  x: {
-                    grid: {
-                      display: false,
-                      drawBorder: false,
-                    },
-                    ticks: {
-                      display: false,
-                    },
-                  },
-                  y: {
-                    min: -9,
-                    max: 39,
-                    display: false,
-                    grid: {
-                      display: false,
-                    },
-                    ticks: {
-                      display: false,
-                    },
-                  },
-                },
-                elements: {
-                  line: {
-                    borderWidth: 1,
-                  },
-                  point: {
-                    radius: 4,
-                    hitRadius: 10,
-                    hoverRadius: 4,
-                  },
-                },
-              }}
-            />
-          }
-        />
-      </CCol> */}
+
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           className="mb-4"
@@ -285,8 +175,10 @@ const WidgetsDropdown = () => {
               (84.7% <CIcon icon="cil-arrow-top" />)
             </>
           }
-          title="Fetch Fresh Analysis"
-          onClick={() => showFreshAnalysis()}
+          title="Graphical Analysis"
+          onClick={() => history.push("/datainsight")}
+          // onClick={() => navigateToDataInsight()}
+          // <Link to="/signup" className="btn btn-primary">Sign up</Link>
           action={
             <CDropdown alignment="end">
               <CDropdownToggle
@@ -301,13 +193,11 @@ const WidgetsDropdown = () => {
               </CDropdownToggle>
               <CDropdownMenu>
                 <CDropdownItem
-                // onClick={() => <a href="http://localhost:8868/"></a>}
+                  onClick={() => history.push("/datainsight")}
+                  // onClick={() => <a href="http://localhost:8868/"></a>}
                 >
                   Action
                 </CDropdownItem>
-                <CDropdownItem>Another action</CDropdownItem>
-                <CDropdownItem>Something else here...</CDropdownItem>
-                <CDropdownItem disabled>Disabled action</CDropdownItem>
               </CDropdownMenu>
             </CDropdown>
           }
