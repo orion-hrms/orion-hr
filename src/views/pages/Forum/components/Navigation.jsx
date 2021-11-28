@@ -4,10 +4,10 @@ import { Link, withRouter } from "react-router-dom";
 function Navigation(props) {
   return (
     <div className="navigation">
-      <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <Link class="navbar-brand" to="/">
-            React Forum Demo for OrionHR
+            Public Forum for OrionHR
           </Link>
 
           <div>
@@ -22,6 +22,7 @@ function Navigation(props) {
                   <span class="sr-only">(current)</span>
                 </Link>
               </li>
+
               <li
                 class={`nav-item  ${
                   props.location.pathname === "/add" ? "active" : ""
@@ -31,6 +32,7 @@ function Navigation(props) {
                   Add
                 </Link>
               </li>
+              
               <li
                 class={`nav-item  ${
                   props.location.pathname === "/list" ? "active" : ""
@@ -43,6 +45,16 @@ function Navigation(props) {
               
               <li
                 class={`nav-item  ${
+                  props.location.pathname === "/comment" ? "active" : ""
+                }`}
+              >
+                <Link class="nav-link" to="/comment">
+                Comment
+                </Link>
+              </li>
+             
+              <li
+                class={`nav-item  ${
                   props.location.pathname === "/manage" ? "active" : ""
                 }`}
               >
@@ -50,14 +62,12 @@ function Navigation(props) {
                   MANAGE
                 </Link>
               </li>
+              
+      
+             
 
-              <li
-                class={`nav-item  ${
-                  props.location.pathname === "/test" ? "active" : ""
-                }`}
-              >
-               
-              </li>
+              
+             
 
               
             </ul>

@@ -6,12 +6,19 @@ import{Table, Button } from 'reactstrap' ;
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
+import {Delete} from './delete.js'
+import {Reload} from './delete.js'
+import './delete.js'
 
 
 
 
 
 class MANGE extends Component {
+  
+
+
+
     state = {
         isLoading:false,
         invoices:[
@@ -59,7 +66,8 @@ class MANGE extends Component {
                     <td>{invoice.Theme}</td>
                     <td>{invoice.contents}</td>
 
-                    <td><Button className="btn btn-lg btn-danger" onClick ><FontAwesomeIcon icon={faTrashAlt} />Delete </Button></td>
+                  {/*   <td><Button className="btn btn-lg btn-danger" onClick ><FontAwesomeIcon icon={faTrashAlt} />Delete </Button></td> */}
+              
 
                 </tr>
             )
@@ -81,7 +89,7 @@ class MANGE extends Component {
                                         <th>Author_Name</th>
                                         <th>Theme</th>
                                         <th>contents</th>
-                                        <th colSpan="5">Actions</th>
+                                       {/*  <th colSpan="5">Actions</th> */}
                                         
                                     </tr>
                                 </thead>
@@ -90,7 +98,7 @@ class MANGE extends Component {
                                 {this.state.invoices.length === 0 ? <td colSpan="11">All caught up!</td> : invoices}
                             </tbody>
                             </Table>
-
+                            
                         </div>
 
                      </div>
@@ -98,6 +106,16 @@ class MANGE extends Component {
                             <div className="col-12">
                                 <h4>Admin Page</h4>
                             </div>
+
+                            <div className="col-12">
+                                <input id="index" name=""/>
+                                <input id="Delete" type="button" value="Conditional Delete" onClick={Delete} />
+                                <input id="Reload" type="button" value="Reload" onClick={Reload} />  
+                                {/* <textarea readonly id= "textarea" ></textarea> */}
+                            </div>
+                    
+
+
                     </div>
 
 

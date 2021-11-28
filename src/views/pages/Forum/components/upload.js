@@ -5,7 +5,8 @@ export function upload() {
     var Tittle = document.getElementById("Tittle").value;
     var Author_Name = document.getElementById("Author_Name").value;
     var contents = document.getElementById("contents").value;
- 
+    var Like = 1;
+    var Dislike = 0;
     var Time = new Date();
 
     var api = "https://qotu9d6hfg.execute-api.us-east-1.amazonaws.com/Dev/upload_forum"
@@ -17,7 +18,8 @@ export function upload() {
             "Tittle":Tittle,
             "Author_Name":Author_Name,
             "contents":contents,
-     
+            "Like":Like,
+            "Dislike":Dislike,
             "Time":Time,
 
         };
@@ -37,6 +39,6 @@ export function upload() {
         document.getElementById("Tittle").value="";
         document.getElementById("Author_Name").value="";
         document.getElementById("contents").value="";
-   
+        
     
   }
