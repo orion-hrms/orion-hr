@@ -76,7 +76,7 @@ class List extends Component {
                     <td><Button className="btn btn-lg btn-light"  onClick={ () => this.addLike(invoice.id)}><FontAwesomeIcon icon={faThumbsUp} /> {invoice.Like}</Button></td>
                     <td><Button className="btn btn-lg btn-secondary"  onClick={ () => this.addLike(invoice.id)}><FontAwesomeIcon icon={faThumbsDown} /> {invoice.Dislike}</Button></td>
                 
-                    <td><Button className="btn btn-lg btn-warning" onClick={ () => this.remove(invoice.id)} ><FontAwesomeIcon icon={faPlusCircle} />Comment </Button></td>
+                    {/* <td><Button className="btn btn-lg btn-warning" onClick={ () => this.remove(invoice.id)} ><FontAwesomeIcon icon={faPlusCircle} />Comment </Button></td> */}
                     
                     
                 </tr>
@@ -93,12 +93,12 @@ class List extends Component {
                             <Table dark responsive striped bordered hover>
                                 <thead>
                                     <tr>
-                                        <th scope="row">Tittle</th>
+                                        <th scope="row">Title</th>
                                         <th>Theme</th>
                                         <th>Author_Name</th>
                                         <th>contents</th>
                                         <th>Time</th>
-                                        <th colSpan="5">Actions</th>      
+                                        <th colSpan="5"></th>      
                                     </tr>
                                 </thead>
                             
@@ -112,7 +112,7 @@ class List extends Component {
                      </div>
                      <div className="row">
                             <div className="col-12">
-                                <h4>Normal User Main Page</h4>
+                                <h4>List</h4>
                             </div>
                     </div>
 

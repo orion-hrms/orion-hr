@@ -29,20 +29,22 @@ function Add()
   			<option value ="False">False</option>
   		</select>
       <br/>
-      Tittle
+      Title
       <br/>
-      <input style={{width: "50%",border: "3px solid black"}} id="Tittle" type="" name="" placeholder="Tittle"/>
+      <input style={{width: "25%",border: "3px solid black"}} id="Title" type="" name="" placeholder="Title"/>
       <br/>
   		Author_Name
       <br/>
-      <input style={{width: "50%",border: "3px solid black"}}  id="Author_Name" type="" name=""></input>
+      <input style={{width: "25%",border: "3px solid black"}}  id="Author_Name" type="" name=""></input>
       <br/>
       Content
       <br/>
-  		<textarea style={{width:"50%",border: "3px solid black"}}id="contents" rows="3" cols="20" autoFocus={true} ></textarea>
+  		<textarea style={{width:"75%",height:"25%", border: "3px solid black"}}id="contents" rows="3" cols="20" autoFocus={true} ></textarea>
       <br/>
   		<button onClick={upload}>Upload</button>
+      
     </div>
+    
     
   );
 }

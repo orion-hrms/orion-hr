@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navigation, Footer, Home,Add, LIST, MANAGE,  } from "./components";
+import { Navigation, Footer, Home,Add, LIST, MANAGE,Comment} from "./components";
 
 
 function Forum() {
@@ -16,7 +16,9 @@ function Forum() {
           <Route path="/add" exact component={() => <Add />} />
           <Route path="/list" exact component={() => <LIST />} />
           <Route path="/manage" exact component={() => <MANAGE />} />
-          
+          <Route path="/comment" exact component={() => <Comment />} />
+
+       
         </Switch>
 
         <Footer />
