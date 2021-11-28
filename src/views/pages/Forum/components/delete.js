@@ -2,9 +2,8 @@ import AWS from 'aws-sdk';
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
 AWS.config.update({
         region: "us-east-1",
-        accessKeyId: "AKIARGOKD4YBOZ6DOUQG123",
-        secretAccessKey: "CfxIbyOIntjroUShy0NTfSKZTGHXIJk2VBim4Kzq123"
-        //remove 123 from accesskey and secretaccesskey
+        accessKeyId: process.env.REACT_APP_DACK,
+        secretAccessKey: process.env.REACT_APP_DSEK
       });
       
 var docClient = new AWS.DynamoDB.DocumentClient();
@@ -15,13 +14,13 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
       var table = "Forum_content";
   
-      var Tittle = document.getElementById("index").value;
+      var Title = document.getElementById("index").value;
   
       var params = {
           TableName:table,
           Key:{
   
-              "Tittle":Tittle
+              "Title":Title
           },
   
       };

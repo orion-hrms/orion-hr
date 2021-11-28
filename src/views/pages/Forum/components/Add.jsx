@@ -29,9 +29,9 @@ function Add()
   			<option value ="False">False</option>
   		</select>
       <br/>
-      Tittle
+      Title
       <br/>
-      <input style={{width: "25%",border: "3px solid black"}} id="Tittle" type="" name="" placeholder="Tittle"/>
+      <input style={{width: "25%",border: "3px solid black"}} id="Title" type="" name="" placeholder="Title"/>
       <br/>
   		Author_Name
       <br/>

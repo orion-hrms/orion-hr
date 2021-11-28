@@ -93,7 +93,7 @@ class List extends Component {
                             <Table dark responsive striped bordered hover>
                                 <thead>
                                     <tr>
-                                        <th scope="row">Tittle</th>
+                                        <th scope="row">Title</th>
                                         <th>Theme</th>
                                         <th>Author_Name</th>
                                         <th>contents</th>

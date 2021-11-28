@@ -59,7 +59,7 @@ class MANGE extends Component {
             let invoices = 
             allinvoices.map( invoice => 
                 <tr key={invoice.id}>
-                    <td>{invoice.Tittle}</td>
+                    <td>{invoice.Title}</td>
                     <td>{invoice.Allow_Comment}</td>
                     <td>{invoice.Allow_Share}</td>
                     <td>{invoice.Author_Name}</td>
@@ -83,7 +83,7 @@ class MANGE extends Component {
                             <Table dark responsive striped bordered hover>
                                 <thead>
                                     <tr>
-                                        <th scope="row">Tittle</th>
+                                        <th scope="row">Title</th>
                                         <th>Allow_Comment</th>
                                         <th>Allow_Share</th>
                                         <th>Author_Name</th>

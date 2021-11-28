@@ -7,7 +7,7 @@ function Comment() {
           
           Title
           <br/>
-          <input style={{width: "25%",border: "3px solid black"}} id="Title" type="" name="" placeholder="Tittle"/>
+          <input style={{width: "25%",border: "3px solid black"}} id="Title" type="" name="" placeholder="Title"/>
           <br/>
           Comment
           <br/>
@@ -15,7 +15,6 @@ function Comment() {
           <br/>
           <button onClick={Comment_upload}>Add</button>
           <br/>
-          <a target="_blank" href="https://colab.research.google.com/drive/1R4_X4k172CRg47yxb_uPNAc7l_vjzHfm?usp=sharing">Analysis</a>
         </div>
         
             

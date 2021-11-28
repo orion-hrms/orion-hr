@@ -2,7 +2,7 @@ export function upload() {
     var Theme = document.getElementById("Theme").value;
     var Allow_Share = document.getElementById("Allow_Share").value;
     var Allow_Comment = document.getElementById("Allow_Comment").value;
-    var Tittle = document.getElementById("Tittle").value;
+    var Title = document.getElementById("Title").value;
     var Author_Name = document.getElementById("Author_Name").value;
     var contents = document.getElementById("contents").value;
     var Like = 1;
@@ -15,7 +15,7 @@ export function upload() {
             "Theme":Theme,
             "Allow_Share":Allow_Share,
             "Allow_Comment":Allow_Comment,
-            "Tittle":Tittle,
+            "Tittle":Title,
             "Author_Name":Author_Name,
             "contents":contents,
             "Like":Like,
@@ -36,7 +36,7 @@ export function upload() {
         document.getElementById("Theme").value="";
         document.getElementById("Allow_Share").value="";
         document.getElementById("Allow_Comment").value="";
-        document.getElementById("Tittle").value="";
+        document.getElementById("Title").value="";
         document.getElementById("Author_Name").value="";
         document.getElementById("contents").value="";
         
