@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -13,6 +13,8 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
+import { Auth } from "aws-amplify";
+
 import { AppBreadcrumb } from "./index";
 
 import { AppHeaderDropdown } from "./header/index";
@@ -20,6 +22,18 @@ import { AppHeaderDropdown } from "./header/index";
 const AppHeader = () => {
   const dispatch = useDispatch();
   const sidebarShow = useSelector((state) => state.sidebarShow);
+
+  const [userName, setUserName] = useState("");
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
+  const getCurrentUser = async () => {
+    let user = await Auth.currentAuthenticatedUser();
+    console.log("user", user);
+    console.log("attributes", user.username);
+    setUserName(user.username);
+  };
 
   return (
     <CHeader position="sticky" className="mb-4">
@@ -67,6 +81,9 @@ const AppHeader = () => {
             </CNavLink>
           </CNavItem> */}
         </CHeaderNav>
+        <p>
+          Welcome <b> {userName} </b> !
+        </p>
         <CHeaderNav className="ms-3">
           <AppHeaderDropdown />
         </CHeaderNav>
