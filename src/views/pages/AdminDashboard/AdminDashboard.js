@@ -12,6 +12,7 @@ import {
   CardText,
 } from "reactstrap";
 import {CChartDoughnut } from "@coreui/react-chartjs";
+import legend from "../../../assets/img/Legend.png";
 import Amplify, { Auth, API, graphqlOperation } from "aws-amplify";
 import {
   listQuestions,
@@ -459,6 +460,12 @@ function AdminDashboard({ props }) {
               data={q4state}
               options={q4options}
             />
+          </Col>
+        </Row>
+        <br/>
+        <Row>
+          <Col>
+            <img className="d-block mx-auto img-fluid w-50" src={legend} />
           </Col>
         </Row>
         <br />
