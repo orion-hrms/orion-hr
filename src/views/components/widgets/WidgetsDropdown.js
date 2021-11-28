@@ -68,7 +68,7 @@ const WidgetsDropdown = () => {
         <CWidgetDropdown
           className="mb-4"
           color="primary"
-          value={empdata}
+          // value={empdata}
           change={<>{/* (-12.4% <CIcon icon="cil-arrow-bottom" />) */}</>}
           title="Users"
           to="/employees"
@@ -175,7 +175,7 @@ const WidgetsDropdown = () => {
               (84.7% <CIcon icon="cil-arrow-top" />)
             </>
           }
-          title="Fetch Fresh Analysis"
+          title="Graphical Analysis"
           onClick={() => history.push("/datainsight")}
           // onClick={() => navigateToDataInsight()}
           // <Link to="/signup" className="btn btn-primary">Sign up</Link>
