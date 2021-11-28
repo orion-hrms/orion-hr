@@ -58,9 +58,7 @@ const Manage = () => {
       let emails = new Set();
       data.Users.map((user) =>
         user.Attributes.map((attr) => {
-          if (
-            attr.Name == "email" && attr.Value != userEmail
-          ) {
+          if (attr.Name == "email" && attr.Value != userEmail) {
             emails.add(attr.Value);
           }
 

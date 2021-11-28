@@ -115,6 +115,9 @@ function Survey() {
       await API.graphql(graphqlOperation(createSurvey, { input: forms }));
       await API.graphql(graphqlOperation(createQuestion, { input: qlist }));
       console.log("Success");
+      alert(
+        "Thank you. We have received your application and will get back to you soon."
+      );
     } catch (err) {
       console.log("DB write error");
     }
@@ -125,9 +128,6 @@ function Survey() {
     interpretFromPredictions();
     sendToDB();
     //history.push('./thankyou');
-    alert(
-      "Thank you. We have received your application and will get back to you soon."
-    );
   };
 
   return (

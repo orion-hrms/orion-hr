@@ -20,7 +20,7 @@ export default function AdminTable(props) {
             <tr>
               <td>I find purpose in my work</td>
               <td>My overall workload is managable</td>
-              <td>This job allows me to use my skills and abilities effectively.</td>
+              <td>This job allows me to use my skills and abilities effectively</td>
               <td>This job allows me to learn new skills and develop professionally</td>
             </tr>
           </tbody>

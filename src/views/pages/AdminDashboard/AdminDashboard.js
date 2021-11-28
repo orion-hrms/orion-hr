@@ -11,16 +11,12 @@ import {
   CardBody,
   CardText,
 } from "reactstrap";
-import { CChartBar, CChartPie, CChart } from "@coreui/react-chartjs";
-import { AmplifySignOut } from "@aws-amplify/ui-react";
+import {CChartDoughnut } from "@coreui/react-chartjs";
+import legend from "../../../assets/img/Legend.png";
 import Amplify, { Auth, API, graphqlOperation } from "aws-amplify";
 import {
   listQuestions,
 } from "../../../graphql/queries";
-import {
-  CognitoIdentityProviderClient,
-  ListUsersCommand,
-} from "@aws-sdk/client-cognito-identity-provider";
 import AdminTable from "./AdminTable";
 
 import awsconfig from "../../../aws-exports";
@@ -43,129 +39,146 @@ function AdminDashboard({ props }) {
   const [q3Occu, setQ3Occu] = useState([]);
   const [q4Occu, setQ4Occu] = useState([]);
   
+  const colorMap = {
+    'Strongly Disagree': '#B21F00',
+    'Disagree': '#C9DE00',
+    'Neutral': '#2FDE00',
+    'Agree': '#00A6B4',
+    'Strongly Agree': '#6800B4'
+  };
+
+  const hoverColorMap = {
+    'Strongly Disagree': '#501800',
+    'Disagree': '#4B5000',
+    'Neutral': '#175000',
+    'Agree': '#003350',
+    'Strongly Agree': '#35014F  '
+  };
+
+
+  const q1Labels =  q1Occu.reduce(function (acc, curr) {
+    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+  }, {})
+
   const q1state = {
-    labels: Object.keys(
-      q1Occu.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      }, {})
-    ),
+    labels: Object.keys(q1Labels),
     datasets: [
       {
-        backgroundColor: [
-          "#B21F00",
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#501800",
-          "#4B5000",
-          "#175000",
-          "#003350",
-          "#35014F",
-        ],
-        data: Object.values(
-          q1Occu.reduce(function (acc, curr) {
-            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-          }, {})
-        ),
+        backgroundColor: Object.keys(q1Labels).map(l => colorMap[l]),
+        hoverBackgroundColor: Object.keys(q1Labels).map(l => hoverColorMap[l]),
+        data: Object.values(q1Labels),
       },
     ],
   };
+
+  const q1options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Question 1",
+        color: "#333",
+        font: {
+          size: 16
+        }
+      }
+    }
+  }
+
+  const q2Labels =  q2Occu.reduce(function (acc, curr) {
+    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+  }, {})
 
   const q2state = {
-    labels: Object.keys(
-      q2Occu.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      }, {})
-    ),
+    labels: Object.keys(q2Labels),
     datasets: [
       {
-        backgroundColor: [
-          "#B21F00",
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#501800",
-          "#4B5000",
-          "#175000",
-          "#003350",
-          "#35014F",
-        ],
-        data: Object.values(
-          q2Occu.reduce(function (acc, curr) {
-            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-          }, {})
-        ),
+        backgroundColor: Object.keys(q2Labels).map(l => colorMap[l]),
+        hoverBackgroundColor: Object.keys(q2Labels).map(l => hoverColorMap[l]),
+        data: Object.values(q2Labels),
       },
     ],
   };
+
+  const q2options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Question 2",
+        color: "#333",
+        font: {
+          size: 16
+        }
+      }
+    }
+  }
+
+  const q3Labels =  q3Occu.reduce(function (acc, curr) {
+    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+  }, {})
 
   const q3state = {
-    labels: Object.keys(
-      q3Occu.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      }, {})
-    ),
+    labels: Object.keys(q3Labels),
     datasets: [
       {
-        backgroundColor: [
-          "#B21F00",
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#501800",
-          "#4B5000",
-          "#175000",
-          "#003350",
-          "#35014F",
-        ],
-        data: Object.values(
-          q3Occu.reduce(function (acc, curr) {
-            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-          }, {})
-        ),
+        backgroundColor: Object.keys(q3Labels).map(l => colorMap[l]),
+        hoverBackgroundColor: Object.keys(q3Labels).map(l => hoverColorMap[l]),
+        data: Object.values(q3Labels),
       },
     ],
   };
 
+  const q3options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Question 3",
+        color: "#333",
+        font: {
+          size: 16
+        }
+      }
+    }
+  }
+
+  const q4Labels =  q4Occu.reduce(function (acc, curr) {
+    return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+  }, {})
+
   const q4state = {
-    labels: Object.keys(
-      q4Occu.reduce(function (acc, curr) {
-        return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-      }, {})
-    ),
+    labels: Object.keys(q4Labels),
     datasets: [
       {
-        backgroundColor: [
-          "#B21F00",
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#501800",
-          "#4B5000",
-          "#175000",
-          "#003350",
-          "#35014F",
-        ],
-        data: Object.values(
-          q4Occu.reduce(function (acc, curr) {
-            return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
-          }, {})
-        ),
+        backgroundColor: Object.keys(q4Labels).map(l => colorMap[l]),
+        hoverBackgroundColor: Object.keys(q4Labels).map(l => hoverColorMap[l]),
+        data: Object.values(q4Labels),
       },
     ],
   };
+
+  const q4options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: "Question 4",
+        color: "#333",
+        font: {
+          size: 16
+        }
+      }
+    }
+  }
 
   useEffect(() => {
     getallQuestions();
@@ -425,72 +438,34 @@ function AdminDashboard({ props }) {
         <br />
         <Row xs="4">
           <Col>
-            <CChart
-              type="doughnut"
+            <CChartDoughnut
               data={q1state}
-              options={{
-                title: {
-                  display: true,
-                  text: "Question 1",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: "right",
-                },
-              }}
+              options={q1options}
             />
           </Col>
           <Col>
-            <CChart
-              type="doughnut"
+            <CChartDoughnut
               data={q2state}
-              options={{
-                title: {
-                  display: true,
-                  text: "Question 2",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: false,
-                  position: "right",
-                },
-              }}
+              options={q2options}
             />
           </Col>
           <Col>
-            <CChart
-              type="doughnut"
+            <CChartDoughnut
               data={q3state}
-              options={{
-                title: {
-                  display: true,
-                  text: "Question 3",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: "right",
-                },
-              }}
+              options={q3options}
             />
           </Col>
           <Col>
-            <CChart
-              type="doughnut"
+            <CChartDoughnut
               data={q4state}
-              options={{
-                title: {
-                  display: true,
-                  text: "Question 4",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: "right",
-                },
-              }}
+              options={q4options}
             />
+          </Col>
+        </Row>
+        <br/>
+        <Row>
+          <Col>
+            <img className="d-block mx-auto img-fluid w-35" src={legend} />
           </Col>
         </Row>
         <br />
