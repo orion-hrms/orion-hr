@@ -465,7 +465,7 @@ function AdminDashboard({ props }) {
         <br/>
         <Row>
           <Col>
-            <img className="d-block mx-auto img-fluid w-50" src={legend} />
+            <img className="d-block mx-auto img-fluid w-35" src={legend} />
           </Col>
         </Row>
         <br />
